@@ -1,0 +1,58 @@
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">        
+  google.load('visualization', '1.1', {
+    'packages': ['corechart','bar']
+  });
+  
+</script>
+<div class="dashboardMainContainer">
+<md-card class="app-input-section">
+      <md-card-title>
+		<span><img src="../../app/resources/images/summary.png" style="width:60px;height:60px;margin-right:15px;opacity:100;"/></span><span>Recent Campaign Summary</span>
+	  </md-card-title>
+      <md-card-content>
+              <p> See your most recent campaign summary here </p>
+			  <div id="summaryContainer">			  
+				  <div id="summary-left">
+					<h4 #emailSubject></h4>
+					<h6 #sentOnDate></h6>
+				  </div>
+				  <div id="summary-right">
+					<h4> Statistical Summary </h4>
+					<p #description>
+						This is a section that gives a summarized text for visitor campaign held on May 01, 2017. The campaign was targeted to visitors, default and prime contact groups. The campaign was completed successfully with a bounce percentage of 3%
+					</p>
+				  </div>
+			  </div>
+			  <div id="chartContainer">
+			    <div id="chart">
+				<google-chart [data]='barChartOptions'></google-chart>
+				</div>
+				<div id="tabularData">
+					<table>
+						<thead>
+							<tr class="odd">
+								<td>Statistical Analysis</td>
+								<td>Hit Percentage</td>
+							</tr>
+						</thead>
+						<tr class="totalreach">
+							<td>Total Reach</td>
+							<td>100%</td>
+						</tr>
+						<tr class="clicks">
+							<td>Total clicks</td>
+							<td #clickPercentage></td>
+						</tr>
+						<tr class="unsubscribe">
+							<td>Usubscribes</td>
+							<td #unsubscribePercentage></td>
+						</tr>
+					</table>
+					
+				</div>
+			  </div>
+      </md-card-content>
+</md-card>
+</div>

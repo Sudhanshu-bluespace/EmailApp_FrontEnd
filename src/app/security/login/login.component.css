@@ -1,0 +1,19 @@
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+md-card {
+		-webkit-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+-moz-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+margin-top:2vh;
+background:white;
+border-radius: 12px 12px 12px 12px;
+-moz-border-radius: 12px 12px 12px 12px;
+-webkit-border-radius: 12px 12px 12px 12px;
+border: 0px solid #000000;
+min-height:25vh;
+}

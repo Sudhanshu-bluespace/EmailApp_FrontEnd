@@ -1,0 +1,123 @@
+<md-sidenav-layout [class.m2app-dark]="isDarkTheme">
+
+  <md-sidenav #sidenav mode="side" class="app-sidenav" [opened]="userLoggedIn">
+    <md-toolbar color="primary">
+      <h3>
+        <span><img src="../../app/resources/images/home2.png" style="width:35px;height:35px;"/></span>
+      </h3>
+    </md-toolbar>
+
+    <table>
+      <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/dashboard.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['dashboard']" routerLinkActive="active">Dashboard</button>
+        </td>
+      </tr>
+      <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/contact.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['contacts']" routerLinkActive="active">Contacts</button>
+        </td>
+      </tr>
+	  <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/upload.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['bulk_upload']" routerLinkActive="active">Bulk Contacts Upload</button>
+        </td>
+      </tr>
+      <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/usergroup.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['groups']" routerLinkActive="active">Groups</button>
+        </td>
+      </tr>
+      <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/sendemail.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['send_email']" routerLinkActive="active">Send Emails</button>
+        </td>
+      </tr>
+      <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/server.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['servers']" routerLinkActive="active">Servers</button>
+        </td>
+      </tr>
+	  <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/analytics.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['analytics']" routerLinkActive="active">Analytics</button>
+        </td>
+      </tr>
+      <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/userrole.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['user_roles']" routerLinkActive="active">User Roles</button>
+        </td>
+      </tr>
+      <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/usergroup.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['user_groups']" routerLinkActive="active">User Groups</button>
+        </td>
+      </tr>
+      <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_ANALYTICS')">
+		<td>
+           <img src="../../app/resources/images/useraccount.png"/>
+        </td>
+        <td>
+           <button md-button [routerLink]="['user_accounts']" routerLinkActive="active">User Accounts</button>
+        </td>
+      </tr>
+    </table>
+  </md-sidenav>
+
+  <md-toolbar color="primary">
+    <button class="app-icon-button" (click)="sidenav.toggle()"  *ngIf="userLoggedIn">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button> Email App
+    <span class="app-toolbar-filler"></span>
+    <button md-button md-raised-button color="primary" md-tooltip="Login" [routerLink]="['/appLogin']" routerLinkActive="active"
+      *ngIf="!userLoggedIn">Login</button>
+	  <button md-button md-raised-button color="primary" md-tooltip="Register" [routerLink]="['/appRegister']" routerLinkActive="active"
+      *ngIf="!userLoggedIn">Register</button>
+
+    <div *ngIf="userLoggedIn">
+      <button md-button [md-menu-trigger-for]="menu" md-raised-button color="primary" *ngIf="userLoggedIn">
+        <md-icon>person</md-icon>
+        {{user.loggedInUserName}}
+      </button>
+    </div>
+    <md-menu #menu="mdMenu" >
+      <button md-menu-item>Preferences</button>
+      <button md-menu-item md-tooltip="Change password" (click)="changePassword()">Change password</button>
+	  <button md-menu-item md-tooltip="Analytics" (click)="analytics()">Analytics</button>
+      <button md-menu-item md-tooltip="Logout" (click)="logout()">Logout</button>
+    </md-menu>
+
+  </md-toolbar>
+
+  <div class="app-content" [style.background-image]="backgroundImg">
+    <router-outlet></router-outlet>
+  </div>
+
+</md-sidenav-layout>

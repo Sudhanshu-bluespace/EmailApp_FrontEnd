@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #loginForm="ngForm">
+  <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+  <div class="col-xs-8 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+    <md-card class="app-input-section">
+      <md-card-title>Login</md-card-title>
+      <md-card-content>
+        <table style="width: 100%" cellspacing="0">
+          <tr>
+            <td>
+              <md-input placeholder="User name" required [(ngModel)]="username" name="username" style="width: 100%">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">person</i>
+              </span>
+              </md-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input placeholder="Password" required type="password" [(ngModel)]="password" name="password" style="width: 100%">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">vpn_key</i>
+              </span>
+              </md-input>
+            </td>
+          </tr>
+        </table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button type="submit" md-raised-button color="primary" [disabled]="!loginForm.form.valid">Submit</button>
+        <button md-button md-raised-button color="primary" (click)=home()>Cancel</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+  <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+</form>

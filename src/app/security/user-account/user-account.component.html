@@ -1,0 +1,71 @@
+<p-growl [value]="msgs"></p-growl>
+<div *ngIf="!displayUserAccountDetails">
+  <md-card>
+    <md-card-title color="primary">Search User Accounts</md-card-title>
+    <md-card-content>
+      <md-input placeholder="Name" [(ngModel)]="userAccountSearchCriteria.username" class="col-md-5"></md-input>
+      <div class="col-md-2"></div>
+      <md-input placeholder="Email" [(ngModel)]="userAccountSearchCriteria.email" class="col-md-5"></md-input>
+    </md-card-content>
+    <md-card-actions class="center">
+      <button md-raised-button color="primary" (click)="searchUserAccounts()" *ngIf="authorizationService.isUserHasRole('UI_USERS_ACCESS')">Search</button>
+      <button md-raised-button color="primary" (click)="resetSearchCriteria()">Reset</button>
+    </md-card-actions>
+  </md-card>
+  <br>
+  <br>
+  <p-dataTable [value]="userAccounts" selectionMode="single" [responsive]="true" (onRowSelect)="onRowSelect($event)">
+    <header>User Accounts</header>
+    <p-column field="username" header="Name" [sortable]="true" [filter]="true"></p-column>
+    <p-column field="email" header="Email" [sortable]="true" [filter]="true"></p-column>
+    <footer>
+      <div class="row">
+        <div class="col-md-12">
+          <button md-raised-button color="primary" (click)="createUserAccount()" *ngIf="authorizationService.isUserHasRole('UI_USERS_CREATE')">Create</button>
+          <button md-raised-button color="primary">Import</button>
+        </div>
+      </div>
+    </footer>
+  </p-dataTable>
+</div>
+<div *ngIf="displayUserAccountDetails">
+  <md-card>
+    <md-card-title color="primary">Create User Account</md-card-title>
+    <md-card-content>
+      <div>
+        <md-input placeholder="Name" [(ngModel)]="selectedUserAccount.username" class="col-md-5"></md-input>
+        <div class="col-md-2"></div>
+        <md-input placeholder="Email" [(ngModel)]="selectedUserAccount.email" class="col-md-5"></md-input>
+      </div>
+      <div>
+        <md-checkbox [(ngModel)]="selectedUserAccount.active" class="col-md-5" >Active</md-checkbox>
+        <div class="col-md-2"></div>
+        <md-checkbox [(ngModel)]="selectedUserAccount.accountExpired" class="col-md-5" >Account Expired</md-checkbox>
+      </div>
+      <div>
+        <md-checkbox [(ngModel)]="selectedUserAccount.credentialsExpired" class="col-md-5" >Credentials Expired</md-checkbox>
+        <div class="col-md-2"></div>
+        <md-checkbox [(ngModel)]="selectedUserAccount.accountLocked" class="col-md-5">Account Locked</md-checkbox>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div>
+        <p-pickList [source]="sourceUserAccountUserGroups" [target]="targetUserAccountUserGroups" sourceHeader="Available Groups" targetHeader="Selected Groups"
+          [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+          <template let-userAccountUserRole>
+            <div class="ui-helper-clearfix">
+              <div style="font-size:14px;float:center;margin:15px 5px 0 0">{{userAccountUserRole.userGroup.groupName}}</div>
+            </div>
+          </template>
+        </p-pickList>
+      </div>
+    </md-card-content>
+    <md-card-actions class="center">
+      <button md-raised-button color="primary" (click)="submitNewUserAccount()" *ngIf="authorizationService.isUserHasRole('UI_USERS_UPDATE')">Submit</button>
+      <button md-raised-button color="primary" (click)="deleteNewUserAccount()" *ngIf="authorizationService.isUserHasRole('UI_USERS_DELETE')">Delete</button>
+      <button md-raised-button color="primary" (click)="backToUserAccounts()">Back</button>
+    </md-card-actions>
+  </md-card>
+</div>

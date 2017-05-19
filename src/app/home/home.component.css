@@ -1,0 +1,112 @@
+md-sidenav-layout.m2app-dark {
+  /*background-color: black;*/
+}
+
+.app-content {
+  padding: 20px;
+  min-height:95vh;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-box-shadow: -5px 23px 101px -23px rgba(0,0,0,0.75);
+-moz-box-shadow: -5px 23px 101px -23px rgba(0,0,0,0.75);
+box-shadow: -5px 23px 101px -23px rgba(0,0,0,0.75);
+}
+
+.app-sidenav {
+  /*background: white;*/
+  /*height: 100vh;*/
+  min-height:100vh;
+  width:auto;
+  height:auto;
+}
+
+.app-sidenav table {
+  margin-top:30px;
+  margin-left:2px; 
+ padding:30px 5px;
+ width:100%;
+/*-webkit-box-shadow: 6px 18px 20px -23px rgba(0,0,0,0.75);
+-moz-box-shadow: 6px 18px 20px -23px rgba(0,0,0,0.75);
+box-shadow: 6px 18px 20px -23px rgba(0,0,0,0.75);*/
+min-height:60vh;
+
+}
+
+.app-sidenav table tr {
+ width:100%;
+  padding:30px 5px;
+/*-webkit-box-shadow: 6px 18px 20px -23px rgba(0,0,0,0.75);
+-moz-box-shadow: 6px 18px 20px -23px rgba(0,0,0,0.75);
+box-shadow: 6px 18px 20px -23px rgba(0,0,0,0.75);*/
+border-bottom:1px solid #e6e9ef;
+}
+
+.app-sidenav table td {
+ 
+ text-align:left;
+ color:#797a7c;
+}
+
+.app-sidenav table tr:hover {
+	background:#54a0d3;
+}
+
+.app-sidenav table td:hover {
+	color:white;
+	font-weight:bold;
+}
+
+.md-button-ripple::after {
+background:#54a0d3;
+color:white;
+}
+
+.app-sidenav table td img {
+	width:35px;
+	height:35px;
+}
+
+.app-sidenav-links {
+  /*background: white;*/
+}
+
+.app-sidenav-links:hover
+{
+   /*background:white;
+   background-color: white;*/
+}
+
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}
+
+.app-toolbar-menu {
+  padding: 10px;
+  color: white;
+}
+
+.app-icon-button {
+  box-shadow: none;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: none;
+  font-weight: normal;
+  height: auto;
+  line-height: inherit;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+}
+
+.app-action {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
