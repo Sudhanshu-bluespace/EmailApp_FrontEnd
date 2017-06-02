@@ -1,0 +1,76 @@
+<!--<small appCompare>hi</small>-->
+<p-growl [value]="msgs" sticky="sticky"></p-growl>
+<form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #registerForm="ngForm">
+  <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+  <div  class="col-xs-8 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+    <md-card class="app-input-section">
+      <md-card-title>Registration</md-card-title>      
+      <md-card-content>
+        <table style="width: 100%" cellspacing="0">
+          <tr>
+            <td>
+              <md-input placeholder="User name" minlength="5" required [(ngModel)]="user.username" name="username" style="width: 100%" #username="ngModel">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">person</i>
+              </span>
+              <!--<md-hint [hidden]="user.username.valid || (user.username.pristine && !registerForm.submitted)">
+                <pre *ngIf="user.username.errors">{{ user.username.errors | json }}</pre>
+              </md-hint>-->
+              <md-hint *ngIf="username.errors && (username.dirty || username.touched)" [ngStyle]="{'color': 'red'}" align="end">
+                <div [hidden]="!username.errors.required">username is required</div>
+                <div [hidden]="!username.errors.minlength">minimum 5 characters</div>
+              </md-hint>
+              </md-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input placeholder="Password" compareControl="confirmPassword" sourceCompare="true" required type="password" [(ngModel)]="user.password" #password="ngModel" name="password" style="width: 100%">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">vpn_key</i>
+              </span>
+              <md-hint *ngIf="password.errors && (password.dirty || password.touched)" [ngStyle]="{'color': 'red'}" align="end">
+                <div [hidden]="!password.errors.required">password is required</div>
+              </md-hint>
+              </md-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input placeholder="Confirm Password" required type="password" [(ngModel)]="user.confirmPassword"
+               #confirmPassword="ngModel" compareControl="password" name="confirmPassword" style="width: 100%">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">vpn_key</i>
+              </span>
+              <md-hint *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)" [ngStyle]="{'color': 'red'}" align="end">
+                <div [hidden]="!confirmPassword.errors.required">confirm password is required</div>
+                <div [hidden]="confirmPassword.errors.required || !confirmPassword.errors">password not match</div>
+              </md-hint>
+              </md-input>
+            </td>
+          </tr>
+		  <tr>
+            <td>
+              <md-input placeholder="Email" emailPattern required [(ngModel)]="user.email" name="email" #email="ngModel" style="width: 100%">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">person</i>
+              </span>
+              <md-hint *ngIf="email.errors && (email.dirty || email.touched)" [ngStyle]="{'color': 'red'}" align="end">
+                <div [hidden]="!email.errors.required">email is required</div>
+                <div [hidden]="email.errors.required || !email.errors">Invalid email</div>
+              </md-hint>
+              </md-input>
+            </td>
+          </tr>
+        </table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button type="submit" md-raised-button color="primary" [disabled]="!registerForm.form.valid || disabled">Register</button>   
+        <button md-button md-raised-button (click)="home()" color="primary">Cancel</button>		
+      </md-card-actions>
+    </md-card>
+  </div>
+  <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+     <p-dialog header="Registration Status..." [(visible)]="registered"  modal="modal" (onAfterShow)="register()" minWidth="200px">
+    </p-dialog>
+</form>

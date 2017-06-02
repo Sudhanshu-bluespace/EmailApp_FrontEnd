@@ -1,0 +1,89 @@
+#summary-left,#summary-right
+{
+	padding:5px;
+}
+
+#summary-left h4,#summary-right h4 {
+	color:#2556B9;
+}
+
+#summary-left h6,#summary-right h6 {
+	color:#2198CB;
+}
+
+#summary-left {
+	display:inline-block;
+	width:50%;
+	float:left;
+}
+#summary-right {
+	display:inline-block;
+	position:relative;
+	width:44%;
+	padding-left:10%;
+}
+
+#summaryContainer {
+	overflow:hidden;
+}
+
+#chart {
+	display:inline-block;
+	width:50%;
+	float:left;
+	padding-top:1.5%;
+}
+#tabularData {
+	display:inline-block;
+	position:relative;
+	width:44%;
+	padding-left:10%;
+	padding-top:1.5%;
+}
+
+#tabularData h4 {
+	color:#2556B9;
+}
+
+#tabularData table {
+	width:98%;
+}
+
+#tabularData table thead tr {
+	background-color:#604688;
+	color:white;
+}
+
+#tabularData table tr td {
+	padding:6px;
+}
+#tabularData table tr.totalreach {
+	width:45%;
+	background-color:#F7F7F9;
+}
+
+#tabularData table tr.clicks {
+	width:45%;
+	background-color:#FEFDFE;
+}
+
+#tabularData table tr.unsubscribe {
+	width:45%;
+	background-color:#F7F7F9;
+}
+
+md-card-content {
+	height:100%;
+	overflow:hidden;
+}
+md-card {
+		 -webkit-box-shadow: -7px 28px 66px -25px rgba(0,0,0,0.75);
+-moz-box-shadow: -7px 28px 66px -25px rgba(0,0,0,0.75);
+box-shadow: -7px 28px 66px -25px rgba(0,0,0,0.75);
+margin-top:2vh;
+background:white;
+border-radius: 12px 12px 12px 12px;
+-moz-border-radius: 12px 12px 12px 12px;
+-webkit-border-radius: 12px 12px 12px 12px;
+border: 0px solid #000000;
+}

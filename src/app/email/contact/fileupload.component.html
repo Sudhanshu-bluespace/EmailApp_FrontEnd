@@ -1,0 +1,156 @@
+<p-growl [value]="msgs" sticky="sticky"></p-growl>
+<div id="mainContainer">
+<nav id="upper-container" class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                            <li><p class="title-head">Bulk Contact Upload</p></li>
+                            </ul>							
+                        </div>
+						<div id="description">
+							<p>This module allows you to upload your contact list in bulk using a CSV file. Please note that only CSV files are allowed to be used as the source of upload. Files in any other
+							format will not be accepted. The data in the file should map the following format:
+							firstName,lastName,email,groupName
+							You can also set in a new group name in the file if you wish your contact to map to the new group. The application will then insert a new record for the group and map your contact to that group.
+							You can also map your contact to multiple groups. To map a contact to multiple groups, enter the group names separated by a semi-colon (;). The application uses the semi-colon delimiter to identify 
+							multiple groups for a contact. Pleae check the examples below for usage.
+							</p>
+							
+							<h4>Usage (Expected File data)</h4>
+							<p>To map a contact with first name "A", last name "B", email as "C@emailsample.com" and group "D", the file should have the following entry:</p>
+								<div class="datagrid">
+									<table>
+										<thead>
+											<tr>
+												<th>First Name</th>
+												<th>Last Name</th>
+												<th>Email</th>
+												<th>Group</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="alt">
+												<td>A</td>
+												<td>B</td>
+												<td>C@emailsample.com</td>
+												<td>D</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							<p>To map a contact with first name "A", last name "B", email as "C@emailsample.com" and multiple groups "D,E,F", the file should have the following entry:</p>
+								<div class="datagrid">
+									<table>
+										<thead>
+											<tr>
+												<th>First Name</th>
+												<th>Last Name</th>
+												<th>Email</th>
+												<th>Group</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="alt">
+												<td>A</td>
+												<td>B</td>
+												<td>C@emailsample.com</td>
+												<td>D;E;F</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+						</div>
+                        </div>
+                    </div>
+                </nav>
+                <div id="rowcontainer" class="container">
+                    <div class="row">
+					<div class="col-md-2" style="padding-top:7vh;padding-left:2vh;">
+						<img src="../../../app/resources/images/bulkuploadmainpage.png" style="width:150px;height:150px;"/>
+					</div>
+                        <div class="col-md-4">
+							<form>
+                                <div class="form-group">
+                                    <label for="single">Select a CSV file to upload</label>
+                                    <input type="file" ng2FileSelect [uploader]="uploader" name="payload" />
+                                </div>          
+                            </form>
+							 
+                        </div>
+                        <div class="col-md-8">
+                            <h3>Bulk Upload your contact list from a csv file</h3>
+                            Queue length: {{ uploader?.queue?.length }}
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th width="50%">Name</th>
+                                    <th>Size</th>
+                                    <th>Progress</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let item of uploader.queue">
+                                    <td><strong>{{ item.file.name }}</strong></td>
+                                    <td nowrap>{{ item.file.size/1024/1024 | number:'.2' }} MB</td>
+                                    <td>
+                                        <div class="progress" style="margin-bottom: 0;">
+                                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                    </td>
+                                    <td nowrap>
+                                        <button type="button" class="btn btn-success btn-s"
+                                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-s"
+                                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                        </button>
+                                        <!--button type="button" class="btn btn-danger btn-xs"
+                                                (click)="item.remove()">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                        </button-->
+										<button type="button" class="btn btn-danger btn-s"
+												(click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+											<span class="glyphicon glyphicon-trash"></span> Remove
+										</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <div>
+                                <div>
+                                    Upload progress:
+                                    <div class="progress" style="">
+                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                                    </div>
+                                </div>
+                                <!--button type="button" class="btn btn-success btn-s"
+                                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                                </button>
+                                <button type="button" class="btn btn-warning btn-s"
+                                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                </button>
+                                <button type="button" class="btn btn-danger btn-s"
+                                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                                </button-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				</div>
+				    <p-dialog header="Status..." [(visible)]="uploaded"  modal="modal" (onAfterShow)="uploadContact()" minWidth="200px">
+					</p-dialog>

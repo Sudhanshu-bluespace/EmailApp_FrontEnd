@@ -1,0 +1,1 @@
+{"summaries":[{"symbol":{"__symbol":0},"metadata":{"ACC_TYPE_SUPER_ADMIN":0,"ACC_TYPE_ADMIN":1,"ACC_TYPE_EMPLOYEE":2,"ACC_TYPE_USER":3}}],"symbols":[{"__symbol":0,"name":"UserAccountTypeConstant","filePath":"D:/workspace-sts-3.7.0.RELEASE/emialapp-ui/src/app/security/model/UserAccountTypeConstant.d.ts"}]}
