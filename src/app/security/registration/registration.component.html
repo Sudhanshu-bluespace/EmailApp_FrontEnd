@@ -51,13 +51,38 @@
           </tr>
 		  <tr>
             <td>
-              <md-input placeholder="Email" emailPattern required [(ngModel)]="user.email" name="email" #email="ngModel" style="width: 100%">
+              <md-input placeholder="Email" emailPattern required [(ngModel)]="user.email" name="email" #email="ngModel" style="width: 100%"
+               required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                 <span md-prefix>
                 <i class="material-icons app-input-icon">person</i>
               </span>
               <md-hint *ngIf="email.errors && (email.dirty || email.touched)" [ngStyle]="{'color': 'red'}" align="end">
                 <div [hidden]="!email.errors.required">email is required</div>
-                <div [hidden]="email.errors.required || !email.errors">Invalid email</div>
+                <div [hidden]="!email.errors ||email.errors.pattern">Email does not look to be valid</div>
+              </md-hint>
+              </md-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input placeholder="Company Name" minlength="3" required [(ngModel)]="user.companyName" name="companyname" style="width: 100%" #companyname="ngModel">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">person</i>
+              </span>
+              <md-hint *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" [ngStyle]="{'color': 'red'}" align="end">
+                <div [hidden]="!companyname.errors.required">Company Name is required</div>
+              </md-hint>
+              </md-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input placeholder="Phone Number" maxlength="10" required [(ngModel)]="user.phone" name="phone" style="width: 100%" #phone="ngModel">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">person</i>
+              </span>
+              <md-hint *ngIf="phone.errors && (phone.dirty || phone.touched)" [ngStyle]="{'color': 'red'}" align="end">
+                <div [hidden]="!phone.errors.required">Phone Number is required</div>
               </md-hint>
               </md-input>
             </td>

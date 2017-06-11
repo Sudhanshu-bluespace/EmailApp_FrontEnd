@@ -1,0 +1,49 @@
+<p-growl [value]="msgs" sticky="sticky"></p-growl>
+<form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #approvalForm="ngForm">
+<div id="mainContainer">
+    <md-card class="app-input-section">
+        <md-card-title>
+            <span><img src="../../app/resources/images/approval.png" style="width:60px;height:60px;margin-right:15px;opacity:100;"/></span><span>Account approval requests</span>
+        </md-card-title>
+        <md-card-content>
+             <p> Following account creation requests are waiting for your approval </p>
+        </md-card-content>
+
+        <div id="pendingapprovaltable">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Serial No</td>
+                        <td>user ID</td>
+                        <td>user name</td>
+                        <td>Email</td>
+                        <td>Requested On</td>
+                        <td>Current Status</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="noDataFound">
+                        <td colspan="7">No requests pending for your approval</td>            
+                    </tr>
+                        <tr *ngFor="let data of pendingApprovals">
+                            <td>{{data.serialNo}}</td>
+                            <td>{{data.id}}</td>
+                            <td>{{data.name}}</td>
+                            <td>{{data.email}}</td>
+                            <td>{{data.registrationRequestDate}}</td>
+                            <td>{{data.status}}</td>
+                            <td>
+                                <button md-button type="submit" (click)="setApproveRequestData(data.id)" [disabled]="disabled" md-raised-button color="primary" >Approve</button>   	
+                            </td>
+                        </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </md-card>
+</div>
+  <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+   <p-dialog header="Status..." [(visible)]="approved"  modal="modal" (onAfterShow)="approve()" minWidth="200px">
+    </p-dialog>
+</form>

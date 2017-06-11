@@ -26,12 +26,14 @@ export class RegistrationComponent implements OnInit {
             password: '',
             confirmPassword: '',
 			email: '',
+      companyName: '',
+      phone: ''
         }
   }
 
   onSubmit() {
     this.submitted = true;
-	this.disabled = true;
+	  this.disabled = true;
     this.register(this.user);
   }
 
@@ -40,14 +42,14 @@ export class RegistrationComponent implements OnInit {
             .subscribe((data) => {
                  console.log(data);
 				 this.disabled = false;
-				 this.msgs.push({ severity: "info", summary: "Registration Successful", detail: "" });
+				 this.msgs.push({ severity: "info", summary: "Registration Successful", detail: "Registration request has been sent to the administrator and awaiting approval. Please check your email for details on account activation." });
 				 this.registered = false;
-				 this.router.navigate(['/appLogin']);
+				 //this.router.navigate(['/appLogin']);
             },
             error => {
                 this.msgs.push({ severity: "error", summary: "Registration Failed", detail: error });
-				this.registered = false;
-				this.disabled = false;
+				        this.registered = false;
+				        this.disabled = false;
             });
   };
   
