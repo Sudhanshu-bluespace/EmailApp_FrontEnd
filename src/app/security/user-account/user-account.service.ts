@@ -5,10 +5,7 @@ import {UserAccountTypeConstant} from '../model/UserAccountTypeConstant';
 import {UserAccountSearchCriteria} from '../model/UserAccountSearchCriteria';
 import {UserAccount} from '../model/user_account';
 import { UserAccountChangePasswordResource } from '../model/user_account_change_password_resource';
-<<<<<<< HEAD
 import {Company} from '../model/Company';
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 
 @Injectable()
 export class UserAccountService {
@@ -24,7 +21,6 @@ getUserAccounts (userAccountSearchCriteria: UserAccountSearchCriteria):  Observa
             .catch(this.handleError);   
   }
 
-<<<<<<< HEAD
 getCompanyList() :Observable<Company[]> {
           let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -33,8 +29,6 @@ getCompanyList() :Observable<Company[]> {
             .catch(this.handleError);
 }	
 
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 getUserAccountById(id: number): Observable<UserAccount> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

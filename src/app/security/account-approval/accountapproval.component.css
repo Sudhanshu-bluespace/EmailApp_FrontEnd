@@ -9,13 +9,8 @@
 }
 
 #pendingapprovaltable table {
-<<<<<<< HEAD
 	width:60%;
     /*border:2px solid #BDBDBE;*/
-=======
-	width:50%;
-    border:2px solid #BDBDBE;
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
     -webkit-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
     box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
@@ -58,11 +53,7 @@ background:white;
 border-radius: 12px 12px 12px 12px;
 -moz-border-radius: 12px 12px 12px 12px;
 -webkit-border-radius: 12px 12px 12px 12px;
-<<<<<<< HEAD
 /*border: 0px solid #000000;*/
-=======
-border: 0px solid #000000;
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 min-height:25vh;
 width:105%;
 }

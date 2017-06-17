@@ -9,10 +9,7 @@ import { UserAccount } from '../model/user_account';
 import { UserAccountService } from "../user-account/user-account.service";
 import { UserAccountUserGroup } from "../model/user_account_user_group";
 import { AuthorizationService } from '../../core/authorization.service';
-<<<<<<< HEAD
 import { Company } from '../model/Company';
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 
 @Component({
   selector: 'user-account',
@@ -31,10 +28,7 @@ export class UserAccountComponent implements OnInit {
   displayUserAccountDetails: boolean;
   updateUserAccount: boolean;
   msgs: Message[] = [];
-<<<<<<< HEAD
   companylist:Company[] = [];
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 
   constructor(private userAccountService: UserAccountService, private userGroupService: UserGroupService, private authorizationService: AuthorizationService) { }
 
@@ -68,7 +62,6 @@ export class UserAccountComponent implements OnInit {
 
       });
   };
-<<<<<<< HEAD
   
   getCompanyList()
   {
@@ -77,8 +70,6 @@ export class UserAccountComponent implements OnInit {
         this.companylist = data;
       });
   }
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 
   searchUserGroups() {
     this.sourceUserAccountUserGroups = [];

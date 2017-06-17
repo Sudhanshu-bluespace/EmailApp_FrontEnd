@@ -5,10 +5,7 @@ import { RecentChartSummary } from './model/RecentChartSummary';
 import { CampaignWisePerformance } from './model/CampaignWisePerformance';
 import { GroupWiseUnsubscription } from './model/GroupWiseUnsubscription';
 import { PageLink } from '../security/model/pagelink';
-<<<<<<< HEAD
 import { CompanyWiseRegistrationDTO } from './model/CompanyWiseRegistrationDTO';
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 
 @Injectable()
 export class AnalyticsService {
@@ -28,7 +25,6 @@ export class AnalyticsService {
 		 .map(res => res.json())
 		 .catch(this.handleError);;     
   }
-<<<<<<< HEAD
 
   companyWiseRegistrationStats(): Observable<CompanyWiseRegistrationDTO[]> {
 
@@ -40,8 +36,6 @@ export class AnalyticsService {
 		.catch(this.handleError);  
 
   }
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
   
   campaignWisePerformanceSummary (userName: string):  Observable<CampaignWisePerformance[]>  {
         let headers = new Headers();
@@ -53,11 +47,7 @@ export class AnalyticsService {
 		let body = urlSearchParams.toString();
           return this.http.post('analytics/campaignWisePerformance',body,options)
 		 .map(res => res.json())
-<<<<<<< HEAD
 		 .catch(this.handleError);   
-=======
-		 .catch(this.handleError);;     
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
   }
   
   groupWiseUnsubscription (userName: string):  Observable<GroupWiseUnsubscription[]>  {

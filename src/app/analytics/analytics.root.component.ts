@@ -11,10 +11,7 @@ import { ViewChild, ElementRef } from '@angular/core';
 
 import {Tabs} from './tabs.component';
 import {Tab} from './tab.component';
-<<<<<<< HEAD
 import {CompanyWiseRegistrationDTO} from './model/CompanyWiseRegistrationDTO';
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 
 @Component({
   selector: 'analytics',
@@ -31,18 +28,12 @@ export class AnalyticsComponent {
 		let user = this.globalService.loggedInUser.loggedInUserName;
 		this.campaignWisePerformance(user);
 		this.groupWiseSunsubscription(user);
-<<<<<<< HEAD
 		this.getCompanyWiseRegistrationStats();
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 
   }
   campaignWisePerformanceSummaryResponse:CampaignWisePerformance[]
   groupWiseUnsubscriptionResponse:GroupWiseUnsubscription[]
-<<<<<<< HEAD
 	companyWiseRegistrationSummary:CompanyWiseRegistrationDTO[]
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
   
     campaignWisePerformance(username: string){
 	    
@@ -60,7 +51,6 @@ export class AnalyticsComponent {
             error => {
             });		
   };
-<<<<<<< HEAD
 
 	getCompanyWiseRegistrationStats(){
 	    
@@ -78,8 +68,6 @@ export class AnalyticsComponent {
             error => {
             });		
   };
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
   
   groupWiseSunsubscription(username: string){
 	  this.AnalyticsService.groupWiseUnsubscription(username)
@@ -108,7 +96,6 @@ export class AnalyticsComponent {
 	  this.barChartOptions.dataTable.push([entry.groupName,entry.unsubscribed]);
 	}
   }
-<<<<<<< HEAD
 
 	 public myClickCompanyWiseRegistration():void {
     // forces a reference update (otherwise angular doesn't detect the change)
@@ -131,25 +118,11 @@ export class AnalyticsComponent {
 	  	console.log("Setting values for : "+entry.subject+" | "+entry.totalReach+" | "+entry.clicks+" | "+entry.unsubscribes);	
 	  	this.columnChartOptions.dataTable.push([entry.subject,entry.totalReach,entry.clicks,entry.unsubscribes]);
 		}
-=======
-  
-  public myClickCampaignWisePerformance():void {
-    // forces a reference update (otherwise angular doesn't detect the change)
-	console.log("Combo chart values : "+this.columnChartOptions.dataTable[0][0]+" | "+this.columnChartOptions.dataTable[0][1]);
-    this.columnChartOptions = Object.create(this.columnChartOptions);
-
-	for(let entry of this.campaignWisePerformanceSummaryResponse)
-	{
-	  console.log("Setting values for : "+entry.subject+" | "+entry.totalReach+" | "+entry.clicks+" | "+entry.unsubscribes);	
-	  this.columnChartOptions.dataTable.push([entry.subject,entry.totalReach,entry.clicks,entry.unsubscribes]);
-	}
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
   }
 	
 	public lineChartOptions:any =  {
 		chartType: 'LineChart',
 		dataTable: [
-<<<<<<< HEAD
 		  [{label:'Company Name',type:'string'},{ label:'Nmber of Approved Registrations',type:'number'},{label:'Number of Pending Registrations',type:'number'}]
 		],
 		options: {
@@ -180,18 +153,11 @@ export class AnalyticsComponent {
 		],
 		options: {
 			title: 'Company Wise Registrations',
-=======
-		  ['Group Name', 'Number of unsubscribes']
-		],
-		options: {
-			title: 'Group Wise Unsubscriptions',
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 			animation:
 			{
 				duration: 1000,
 				easing: 'out',
 				startup:true
-<<<<<<< HEAD
 			},
 			bar: 
 			{ 
@@ -210,34 +176,21 @@ export class AnalyticsComponent {
 			width:'95%',
 			height:'350'
 		}
-=======
-			}
-		},
-		width:'95%',
-		height:'350'
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 	  };
 	  
 	public columnChartOptions:any =  {
     chartType: 'ColumnChart',
     dataTable: [
-<<<<<<< HEAD
       [{label:'Campaign Name',type:'string'}, {label:'Total Reach',type:'number'}, {label:'Total Clicks',type:'number'}, {label:'Unsubscribes',type:'number'}]
-=======
-      ['Campaign Name', 'Total Reach', 'Total Clicks', 'Unsubscribes']
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
     ],
     options: 
 	{
 		title: 'Campaign Wise Performance Summary',
 		height:'350',
-<<<<<<< HEAD
 		bar: 
 			{ 
 				groupWidth: '40' 
 			},
-=======
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 		vAxis: 
 		{
 			title: 'Count'
@@ -310,11 +263,7 @@ export class AnalyticsComponent {
 		  
 		chartType: 'BarChart',  
 		dataTable: [
-<<<<<<< HEAD
 			[{label:'Group Name',type:'string'}, {label:'Count',type:'number'}]
-=======
-			['Group Name', 'Count']
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 		],
 
 		options:
@@ -324,11 +273,7 @@ export class AnalyticsComponent {
 			chartArea: { width: '65%',right:'15%',top:'1%' },
 			bar: 
 			{ 
-<<<<<<< HEAD
 				groupWidth: '40' 
-=======
-				groupWidth: '50%' 
->>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 			},
 			animation:
 			{
