@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <p-growl [value]="msgs"></p-growl>
+=======
+<p-growl [value]="msgs" sticky="sticky"></p-growl>
+>>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 <form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #approvalForm="ngForm">
 <div id="mainContainer">
     <md-card class="app-input-section">
@@ -17,7 +21,10 @@
                         <td>user ID</td>
                         <td>user name</td>
                         <td>Email</td>
+<<<<<<< HEAD
 						<td>Company Name</td>
+=======
+>>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
                         <td>Requested On</td>
                         <td>Current Status</td>
                         <td>Action</td>
@@ -25,14 +32,21 @@
                 </thead>
                 <tbody>
                     <tr *ngIf="noDataFound">
+<<<<<<< HEAD
                         <td colspan="8">No requests pending for your approval</td>            
+=======
+                        <td colspan="7">No requests pending for your approval</td>            
+>>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
                     </tr>
                         <tr *ngFor="let data of pendingApprovals">
                             <td>{{data.serialNo}}</td>
                             <td>{{data.id}}</td>
                             <td>{{data.name}}</td>
                             <td>{{data.email}}</td>
+<<<<<<< HEAD
 							<td>{{data.companyName}}</td>
+=======
+>>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
                             <td>{{data.registrationRequestDate}}</td>
                             <td>{{data.status}}</td>
                             <td>
@@ -46,6 +60,11 @@
     </md-card>
 </div>
   <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+<<<<<<< HEAD
    <!--p-dialog header="Status..." [(visible)]="approved"  modal="modal" (onAfterShow)="approve()" minWidth="200px">
     </p-dialog-->
+=======
+   <p-dialog header="Status..." [(visible)]="approved"  modal="modal" (onAfterShow)="approve()" minWidth="200px">
+    </p-dialog>
+>>>>>>> f4d4c06be256da45a6af7b6d90d2c94641306f05
 </form>
