@@ -1,4 +1,5 @@
 <!--<small appCompare>hi</small>-->
+<p-growl [value]="msgs"></p-growl>
 <form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #registerForm="ngForm">
   <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
   <div  class="col-xs-8 col-sm-6 col-md-4 col-lg-4 col-xl-4">
@@ -50,13 +51,38 @@
           </tr>
 		  <tr>
             <td>
-              <md-input placeholder="Email" emailPattern required [(ngModel)]="user.email" name="email" #email="ngModel" style="width: 100%">
+              <md-input placeholder="Email" emailPattern required [(ngModel)]="user.email" name="email" #email="ngModel" style="width: 100%"
+               required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                 <span md-prefix>
                 <i class="material-icons app-input-icon">person</i>
               </span>
               <md-hint *ngIf="email.errors && (email.dirty || email.touched)" [ngStyle]="{'color': 'red'}" align="end">
                 <div [hidden]="!email.errors.required">email is required</div>
-                <div [hidden]="email.errors.required || !email.errors">Invalid email</div>
+                <div [hidden]="!email.errors ||email.errors.pattern">Email does not look to be valid</div>
+              </md-hint>
+              </md-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input placeholder="Company Name" minlength="3" required [(ngModel)]="user.companyName" name="companyname" style="width: 100%" #companyname="ngModel">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">person</i>
+              </span>
+              <md-hint *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" [ngStyle]="{'color': 'red'}" align="end">
+                <div [hidden]="!companyname.errors.required">Company Name is required</div>
+              </md-hint>
+              </md-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input placeholder="Phone Number" maxlength="10" required [(ngModel)]="user.phone" name="phone" style="width: 100%" #phone="ngModel">
+                <span md-prefix>
+                <i class="material-icons app-input-icon">person</i>
+              </span>
+              <md-hint *ngIf="phone.errors && (phone.dirty || phone.touched)" [ngStyle]="{'color': 'red'}" align="end">
+                <div [hidden]="!phone.errors.required">Phone Number is required</div>
               </md-hint>
               </md-input>
             </td>
@@ -64,10 +90,12 @@
         </table>
       </md-card-content>
       <md-card-actions>
-        <button md-button type="submit" md-raised-button color="primary" [disabled]="!registerForm.form.valid">Register</button>   
+        <button md-button type="submit" md-raised-button color="primary" [disabled]="!registerForm.form.valid || disabled">Register</button>   
         <button md-button md-raised-button (click)="home()" color="primary">Cancel</button>		
       </md-card-actions>
     </md-card>
   </div>
   <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+     <!--p-dialog header="Registration Status..." [(visible)]="registered"  modal="modal" (onAfterShow)="register()" minWidth="200px">
+    </p-dialog-->
 </form>

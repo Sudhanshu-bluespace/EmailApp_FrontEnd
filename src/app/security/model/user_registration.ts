@@ -3,4 +3,6 @@ export class UserRegistration{
     password: string;
     confirmPassword: string;
 	email: string;
+    companyName: string;
+    phone: string;
 }

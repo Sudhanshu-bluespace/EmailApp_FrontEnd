@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-md-12">
           <button md-raised-button color="primary" (click)="createUserAccount()" *ngIf="authorizationService.isUserHasRole('UI_USERS_CREATE')">Create</button>
-          <button md-raised-button color="primary">Import</button>
+          <!--button md-raised-button color="primary">Import</button-->
         </div>
       </div>
     </footer>
@@ -33,11 +33,13 @@
     <md-card-title color="primary">Create User Account</md-card-title>
     <md-card-content>
       <div>
-        <md-input placeholder="Name" [(ngModel)]="selectedUserAccount.username" class="col-md-5"></md-input>
-        <div class="col-md-2"></div>
-        <md-input placeholder="Email" [(ngModel)]="selectedUserAccount.email" class="col-md-5"></md-input>
+        <md-input placeholder="Name" [(ngModel)]="selectedUserAccount.username" class="col-md-3"></md-input>
+          <div class="col-md-1"></div>
+        <md-input placeholder="Company Name" [(ngModel)]="selectedUserAccount.companyName" class="col-md-3"></md-input>  
+		      <div class="col-md-1"></div>
+        <md-input placeholder="Email" [(ngModel)]="selectedUserAccount.email" class="col-md-4"></md-input> 
       </div>
-      <div>
+      <div style="margin-top:15px;">
         <md-checkbox [(ngModel)]="selectedUserAccount.active" class="col-md-5" >Active</md-checkbox>
         <div class="col-md-2"></div>
         <md-checkbox [(ngModel)]="selectedUserAccount.accountExpired" class="col-md-5" >Account Expired</md-checkbox>

@@ -15,6 +15,7 @@ import {ChangePasswordComponent} from './security/change-password';
 import {AnalyticsComponent} from './analytics/analytics.root.component';
 import {FileUploadComponent} from './email/contact/fileupload.component';
 import { RegistrationComponent } from './security/registration';
+import { AccountApprovalComponent} from './security/account-approval/accountapproval.component';
 
 const routes: Routes = [ 
   {path:'',component:DefaultComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path:'changePassword',component:ChangePasswordComponent},
   {path:'analytics',component:AnalyticsComponent},
   {path:'bulk_upload',component:FileUploadComponent},
-  {path:'appRegister',component:RegistrationComponent}
+  {path:'appRegister',component:RegistrationComponent},
+  {path:'account_approval',component:AccountApprovalComponent}
 ];
 
 @NgModule({

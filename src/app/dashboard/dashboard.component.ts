@@ -87,6 +87,12 @@ export class DashboardComponent implements OnInit {
 			{ 
 				groupWidth: '50%' 
 			},
+			animation:
+			{
+				duration: 1000,
+				easing: 'out',
+				startup:true
+			},
 			hAxis: {
 				title: 'Count',
 				minValue: 0,

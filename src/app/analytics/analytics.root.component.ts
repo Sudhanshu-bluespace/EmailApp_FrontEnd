@@ -1,78 +1,313 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-//import { LoginService } from "./login.service";
-//import { User } from '../model/user';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { AnalyticsService } from "../analytics/analytics.service";
+import { CampaignWisePerformance } from '../analytics/model/CampaignWisePerformance';
+import { GroupWiseUnsubscription } from '../analytics/model/GroupWiseUnsubscription';
 import { GlobalService } from '../core/global.service';
-import {BrowserModule} from '@angular/platform-browser';
+import { Observable }     from 'rxjs/Observable';
+import { ChartReadyEvent } from 'ng2-google-charts';
+import { ViewChild, ElementRef } from '@angular/core';
 
 import {Tabs} from './tabs.component';
 import {Tab} from './tab.component';
+import {CompanyWiseRegistrationDTO} from './model/CompanyWiseRegistrationDTO';
 
 @Component({
   selector: 'analytics',
   templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.css']
+  styleUrls: ['./analytics.component.css'],
+  providers: [AnalyticsService]
 })
 export class AnalyticsComponent {
 
 	
-  constructor() {
+  userName:string
+  constructor(private AnalyticsService: AnalyticsService, private router: Router,private globalService: GlobalService) {
+		  
+		let user = this.globalService.loggedInUser.loggedInUserName;
+		this.campaignWisePerformance(user);
+		this.groupWiseSunsubscription(user);
+		this.getCompanyWiseRegistrationStats();
+
   }
+  campaignWisePerformanceSummaryResponse:CampaignWisePerformance[]
+  groupWiseUnsubscriptionResponse:GroupWiseUnsubscription[]
+	companyWiseRegistrationSummary:CompanyWiseRegistrationDTO[]
   
-  public columnChartOptions:any =  {
-    chartType: 'ColumnChart',
-    dataTable: [
-      ['Country', 'Performance', 'Profits'],
-      ['Germany', 700, 1200],
-      ['USA', 300, 600],
-      ['Brazil', 400, 500],
-      ['Canada', 500, 1000],
-      ['France', 600, 1100],
-      ['RU', 800, 1000]
-    ],
-    options: {title: 'Countries',height:320}
+    campaignWisePerformance(username: string){
+	    
+    this.AnalyticsService.campaignWisePerformanceSummary(username)
+            .subscribe((data) => {
+                 this.campaignWisePerformanceSummaryResponse=data;
+			for (let entry of this.campaignWisePerformanceSummaryResponse) 
+			{
+				console.log(entry.campaignName+" | "+entry.totalReach); // 1, "string", false
+			} 
+			//console.log("response : "+this.summary.unsubscribes+" | "+this.summary.reach+" | "+this.summary.clicks);
+			this.myClickCampaignWisePerformance();
+			//this.loadData("Sent on "+this.summary.sentOn,this.summary.subject,this.summary.clickPercentage,this.summary.unsubscribePercentage);
+            },
+            error => {
+            });		
+  };
+
+	getCompanyWiseRegistrationStats(){
+	    
+    this.AnalyticsService.companyWiseRegistrationStats()
+            .subscribe((data) => {
+                 this.companyWiseRegistrationSummary=data;
+			for (let entry of this.companyWiseRegistrationSummary) 
+			{
+				console.log(entry.companyName+" | "+entry.approvedCount+" | "+entry.pendingCount); // 1, "string", false
+			} 
+			//console.log("response : "+this.summary.unsubscribes+" | "+this.summary.reach+" | "+this.summary.clicks);
+			this.myClickCompanyWiseRegistration();
+			//this.loadData("Sent on "+this.summary.sentOn,this.summary.subject,this.summary.clickPercentage,this.summary.unsubscribePercentage);
+            },
+            error => {
+            });		
   };
   
-   public timelineChartOptions:any =  {
-    chartType: 'Timeline',
-    dataTable: [
-      ['Name', 'From', 'To'],
-      [ 'Washington', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
-      [ 'Adams',      new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
-      [ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ]
-		],
-	options:
+  groupWiseSunsubscription(username: string){
+	  this.AnalyticsService.groupWiseUnsubscription(username)
+            .subscribe((data) => {
+                 this.groupWiseUnsubscriptionResponse=data;
+			for (let entry of this.groupWiseUnsubscriptionResponse) 
+			{
+				console.log(entry.groupName+" | "+entry.unsubscribed); // 1, "string", false
+			}
+			//console.log("response : "+this.summary.unsubscribes+" | "+this.summary.reach+" | "+this.summary.clicks);
+			this.myClickGroupWiseUnsubscribes();
+			//this.loadData("Sent on "+this.summary.sentOn,this.summary.subject,this.summary.clickPercentage,this.summary.unsubscribePercentage);
+            },
+            error => {
+            });		
+	  
+	  
+  }
+  
+   public myClickGroupWiseUnsubscribes():void {
+    // forces a reference update (otherwise angular doesn't detect the change)
+    this.barChartOptions = Object.create(this.barChartOptions);
+	for(let entry of this.groupWiseUnsubscriptionResponse)
 	{
-		height:320
-	}		
-	};
-	
-	public barChartOptions:any = {
-	
-	dataTable: [
-          ['Opening Move', 'Percentage'],
-          ["King's pawn (e4)", 44],
-          ["Queen's pawn (d4)", 31],
-          ["Knight to King 3 (Nf3)", 12],
-          ["Queen's bishop pawn (c4)", 10],
-          ['Other', 3]
-        ],
-		
-		options:	
+	  console.log("Setting values for : "+entry.groupName+" | "+entry.unsubscribed);	
+	  this.barChartOptions.dataTable.push([entry.groupName,entry.unsubscribed]);
+	}
+  }
+
+	 public myClickCompanyWiseRegistration():void {
+    // forces a reference update (otherwise angular doesn't detect the change)
+    this.regColumnChartOptions = Object.create(this.regColumnChartOptions);
+	for(let entry of this.companyWiseRegistrationSummary)
+	{
+	  console.log("Setting values for : "+entry.companyName);	
+	  this.regColumnChartOptions.dataTable.push([entry.companyName,entry.approvedCount,entry.pendingCount]);
+	}
+  }
+  
+  public myClickCampaignWisePerformance():void 
+	{
+    // forces a reference update (otherwise angular doesn't detect the change)
+		console.log("Combo chart values : "+this.columnChartOptions.dataTable[0][0]+" | "+this.columnChartOptions.dataTable[0][1]);
+    this.columnChartOptions = Object.create(this.columnChartOptions);
+
+		for(let entry of this.campaignWisePerformanceSummaryResponse)
 		{
-          title: 'Chess opening moves',
-          width: 900,
-		  height:300,
-          legend: { position: 'none' },
-          chart: { title: 'Chess opening moves',
-                   subtitle: 'popularity by percentage' },
-          bars: 'horizontal', // Required for Material Bar Charts.
-          axes: {
-            x: {
-              0: { side: 'top', label: 'Percentage'} // Top x-axis.
-            }
-          },
-          bar: { groupWidth: "90%" }
-        }
-	};
+	  	console.log("Setting values for : "+entry.subject+" | "+entry.totalReach+" | "+entry.clicks+" | "+entry.unsubscribes);	
+	  	this.columnChartOptions.dataTable.push([entry.subject,entry.totalReach,entry.clicks,entry.unsubscribes]);
+		}
+  }
+	
+	public lineChartOptions:any =  {
+		chartType: 'LineChart',
+		dataTable: [
+		  [{label:'Company Name',type:'string'},{ label:'Nmber of Approved Registrations',type:'number'},{label:'Number of Pending Registrations',type:'number'}]
+		],
+		options: {
+			title: 'Company Wise Registrations',
+			animation:
+			{
+				duration: 1000,
+				easing: 'out',
+				startup:true
+			},
+			vAxis: 
+			{
+				title: 'Count'
+			},
+			hAxis: 
+			{
+				title: 'Company Name'
+			},
+			width:'95%',
+			height:'350'
+		}
+	  };
+
+		public regColumnChartOptions:any =  {
+		chartType: 'ColumnChart',
+		dataTable: [
+		  [{label:'Company Name',type:'string'},{ label:'Nmber of Approved Registrations',type:'number'},{label:'Number of Pending Registrations',type:'number'}]
+		],
+		options: {
+			title: 'Company Wise Registrations',
+			animation:
+			{
+				duration: 1000,
+				easing: 'out',
+				startup:true
+			},
+			bar: 
+			{ 
+				groupWidth: '40' 
+			},
+			vAxis: 
+			{
+				title: 'Count'
+			},
+			hAxis: 
+			{
+				title: 'Company Name'
+			},
+			seriesType: 'bars',
+			isStacked:true,
+			width:'95%',
+			height:'350'
+		}
+	  };
+	  
+	public columnChartOptions:any =  {
+    chartType: 'ColumnChart',
+    dataTable: [
+      [{label:'Campaign Name',type:'string'}, {label:'Total Reach',type:'number'}, {label:'Total Clicks',type:'number'}, {label:'Unsubscribes',type:'number'}]
+    ],
+    options: 
+	{
+		title: 'Campaign Wise Performance Summary',
+		height:'350',
+		bar: 
+			{ 
+				groupWidth: '40' 
+			},
+		vAxis: 
+		{
+			title: 'Count'
+		},
+		hAxis: 
+		{
+			title: 'Campaign Name'
+		},
+		seriesType: 'bars',
+		isStacked:true,
+		animation:
+		{
+				duration: 1000,
+				easing: 'out',
+				startup:true
+		},
+		width:'95%'
+	}
+  };
+  
+	  
+	public comboChartOptions:any =  {
+    chartType: 'ComboChart',
+    dataTable: [
+      ['Campaign Name', 'Total Reach', 'Total Clicks', 'Unsubscribes']
+    ],
+    options: {
+      title : 'Campaign Wise Performance Summary',
+	  height:'350',
+      vAxis: {title: 'Count'},
+      hAxis: {title: 'Campaign Name'},
+      seriesType: 'bars',
+      series: {5: {type: 'line'}},
+		animation:
+		{
+				duration: 1000,
+				easing: 'out',
+				startup:true
+		},
+	  width:'95%',
+	  chartArea: { width: '65%',right:'15%',top:'1%',height:'85%' },
+    }
+  };
+
+  public pieChartOptions:any =  {
+    chartType: 'PieChart',
+    dataTable: [
+      ['Metrics', 'Percentage'],
+      ['Sent',     11],
+      ['Reach',      2],
+      ['Clicks',  2],
+      ['Failure', 2],
+      ['Bounce',    7]
+    ],
+    options: {
+		title: 'Tasks',
+			animation:
+			{
+				duration: 1000,
+				easing: 'out',
+				startup:true
+			},
+		is3D:true,
+		width:'95%',
+		height:'350'
+	}
+  };
+  
+  	public barChartOptions:any = {
+		  
+		chartType: 'BarChart',  
+		dataTable: [
+			[{label:'Group Name',type:'string'}, {label:'Count',type:'number'}]
+		],
+
+		options:
+		{
+			width:'95%',
+			height:'350',
+			chartArea: { width: '65%',right:'15%',top:'1%' },
+			bar: 
+			{ 
+				groupWidth: '40' 
+			},
+			animation:
+			{
+				duration: 1000,
+				easing: 'out',
+				startup:true
+			},
+			hAxis: {
+				title: 'Count',
+				minValue: 0,
+				textStyle: {
+					bold: true,
+					fontSize: 11,
+					color: '#4d4d4d'
+				},
+				titleTextStyle: {
+					bold: true,
+					fontSize: 12,
+					color: '#4d4d4d'
+				}
+			},
+			vAxis: {
+				title: 'Group Names',
+				textStyle: {
+					fontSize: 11,
+					bold: true,
+				},
+				titleTextStyle: {
+					fontSize: 14,
+					bold: true,
+					color: '#848484'
+				}
+			}
+		}  
+	  };	
+
 }

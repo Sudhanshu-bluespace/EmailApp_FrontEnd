@@ -5,6 +5,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { GroupComponent } from './group/group.component';
 import { ContactComponent } from './contact/contact.component';
+import { FileUploadComponent } from './contact/fileupload.component';
 import { EmailComponent } from './email/email.component';
 import { EmailServerComponent } from './server/emailserver.component';
 import { GroupService } from './group/group.service';
@@ -14,6 +15,7 @@ import { ContactGroupService } from './contactgroup/contactgroup.service';
 import { EmailServerService } from "./server/emailserver.service";
 import { EmailService } from "./email/email.service";
 import { EmailServerPropertiesService } from "./server/emailserverproperties.service";
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
 import { DataTableModule, SharedModule, GrowlModule, Message, 
          ButtonModule, Header, Footer, DialogModule, SelectItem,
@@ -22,7 +24,7 @@ import { DataTableModule, SharedModule, GrowlModule, Message,
 @NgModule({
     imports: [CommonModule, FormsModule, HttpModule, JsonpModule, MaterialModule.forRoot(), DataTableModule, ButtonModule, 
     DialogModule, PanelModule, SharedModule, GrowlModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule],
-    declarations: [GroupComponent, ContactComponent, EmailServerComponent, EmailComponent],
+    declarations: [GroupComponent, ContactComponent, EmailServerComponent, EmailComponent, FileUploadComponent,	FileSelectDirective, FileDropDirective],
     providers: [ContactService, GroupService, CommonService, ContactGroupService, EmailServerService, EmailService,EmailServerPropertiesService]
 })
 export class EmailModule { }

@@ -8,18 +8,24 @@
   
 </script>
   <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+  <div class="barChartTabs">
+      <md-card class="app-analytics-display-section">
+      <md-card-title>Company Wise Registration Statistics</md-card-title>
+      <md-card-content>
+		<google-chart [data]='regColumnChartOptions'></google-chart>
+      </md-card-content>
+      <md-card-actions>
+      </md-card-actions>
+    </md-card>
+  </div>
   <div class="divtabs">
     <md-card class="app-analytics-display-section">
-      <md-card-title>Campaign Summary</md-card-title>
+      <md-card-title>Campaign Wise Performance Statistics</md-card-title>
       <md-card-content>
-	  <tabs>
-		<tab [tabTitle]="'Total'">Tab 1 Content
-		</tab>
-		<tab tabTitle="Clicked">Tab 2 Content</tab>
-		<tab tabTitle="Unsubscribed">Tab 3 Content</tab>
-		<tab tabTitle="Bounced">Tab 4 Content</tab>
-		<tab tabTitle="Complaints">Tab 5 Content</tab>
-      </tabs>
+	  <p>This view allows you to analyze the campaign statistics completed by you till date. 
+		It has a stacked column chart with Total Reach, Clicks and Unsubscribes for each campaign.
+	  </p>
+		<google-chart [data]='columnChartOptions'></google-chart>
       </md-card-content>
       <md-card-actions>
       </md-card-actions>
@@ -27,19 +33,11 @@
   </div>
   <div class="barChartTabs">
       <md-card class="app-analytics-display-section">
-      <md-card-title>Percentage wise comparison</md-card-title>
+      <md-card-title>Group Wise Unsubscription</md-card-title>
       <md-card-content>
-		<google-chart [data]='columnChartOptions'></google-chart>
-      </md-card-content>
-      <md-card-actions>
-      </md-card-actions>
-    </md-card>
-  </div>
-   <div class="barChartTabs">
-      <md-card class="app-analytics-display-section">
-      <md-card-title>Metrics over Time</md-card-title>
-      <md-card-content>
-		<google-chart [data]='timelineChartOptions'></google-chart>
+	  <p>This is a view of how your contacts have opted for unsubscribing from your campaigns. It shows a bar chart for number of unsubscribes per group that you have created. 
+	  </p>
+		<google-chart [data]='barChartOptions'></google-chart>
       </md-card-content>
       <md-card-actions>
       </md-card-actions>

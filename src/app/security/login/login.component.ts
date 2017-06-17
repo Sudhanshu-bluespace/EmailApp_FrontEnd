@@ -3,6 +3,7 @@ import { LoginService } from "./login.service";
 import { User } from '../model/user';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GlobalService } from '../../core/global.service';
+import { Message } from "../../message";
 
 @Component({
   selector: 'login',
@@ -14,6 +15,8 @@ export class LoginComponent implements OnInit {
   submitted = false;
   username : string;
   password : string;
+  msgs: Message[] = [];
+  loggedin: boolean = false;
   
   constructor(private loginService: LoginService, private router: Router,private globalService: GlobalService) {     
  }
@@ -36,13 +39,19 @@ export class LoginComponent implements OnInit {
                  this.loggedInUser();
             },
             error => {
-                alert("Login failed: "+error);
+                //alert("Login failed: "+error);
+				this.msgs.push({ severity: "error", summary: "Login failed", detail: error });
+                this.loggedin = false;
             });
   };
   
   home() {
 	  this.router.navigate(['/']);
   }
+  
+  showDialog() {
+        this.loggedin = true;
+    }
 
   loggedInUser() {
 
