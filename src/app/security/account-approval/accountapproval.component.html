@@ -19,13 +19,18 @@
                         <td>Email</td>
 						<td>Company Name</td>
                         <td>Requested On</td>
+                        <td>Street</td>
+                        <td>City</td>
+                        <td>State</td>
+                        <td>Country</td>
+                        <td>Zipcode</td>
                         <td>Current Status</td>
-                        <td>Action</td>
+                        <td colspan="3">Action</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngIf="noDataFound">
-                        <td colspan="8">No requests pending for your approval</td>            
+                        <td colspan="15">No requests pending for your approval</td>            
                     </tr>
                         <tr *ngFor="let data of pendingApprovals">
                             <td>{{data.serialNo}}</td>
@@ -34,9 +39,28 @@
                             <td>{{data.email}}</td>
 							<td>{{data.companyName}}</td>
                             <td>{{data.registrationRequestDate}}</td>
+                            <td>{{data.street}}</td>
+                            <td>{{data.city}}</td>
+                            <td>{{data.state}}</td>
+                            <td>{{data.country}}</td>
+                            <td>{{data.zipcode}}</td>
                             <td>{{data.status}}</td>
                             <td>
-                                <button md-button type="submit" (click)="setApproveRequestData(data.id)" [disabled]="disabled" md-raised-button color="primary" >Approve</button>   	
+                                <!--button md-button type="submit" (click)="setOnHoldRequestData(data.id)" [disabled]="disabled" md-raised-button color="primary" >Approve</button-->  
+                                 <button type="submit" class="btn btn-success btn-s" (click)="setApproveRequestData(data.id)" [disabled]="disabled">
+                                            <span class="glyphicon glyphicon-upload"></span> Approve
+                                        </button>
+                            </td>
+                            <td>	
+                                <button type="submit" class="btn btn-warning btn-s" (click)="setOnHoldRequestData(data.id)" [disabled]="data.onHold">
+                                            <span class="glyphicon glyphicon-upload"></span> On Hold
+                                        </button>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-danger btn-s"
+                                                (click)="setRejectRequestData(data.id)" [disabled]="data.rejected">
+                                            <span class="glyphicon glyphicon-ban-circle"></span> Reject
+                                </button>
                             </td>
                         </tr>
                 </tbody>

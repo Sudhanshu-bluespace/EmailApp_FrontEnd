@@ -14,7 +14,6 @@
 #summary-left {
 	display:inline-block;
 	width:50%;
-	float:left;
 }
 #summary-right {
 	display:inline-block;
@@ -27,18 +26,22 @@
 	overflow:hidden;
 }
 
+table tr
+{
+    padding:7px;
+}
+
 #chart {
-	display:inline-block;
-	width:50%;
-	float:left;
-	padding-top:1.5%;
+	display: inline-block;
+    width: 52%;
+    padding-top: 1.5%;
 }
 #tabularData {
-	display:inline-block;
-	position:relative;
-	width:44%;
-	padding-left:10%;
-	padding-top:1.5%;
+	display: inline-block;
+    position: absolute;
+    width: 46%;
+    margin-top: 20px;
+    padding-left: 7.5%;
 }
 
 #tabularData h4 {
@@ -60,6 +63,14 @@
 #tabularData table tr.totalreach {
 	width:45%;
 	background-color:#F7F7F9;
+}
+
+#tabularData table tr.odd {
+	background-color:#F7F7F9;
+}
+
+#tabularData table tr.even {
+	background-color:#FEFDFE;
 }
 
 #tabularData table tr.clicks {

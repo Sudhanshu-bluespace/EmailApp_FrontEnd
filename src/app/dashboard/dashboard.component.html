@@ -27,31 +27,76 @@
 			  </div>
 			  <div id="chartContainer">
 			    <div id="chart">
-				<google-chart [data]='barChartOptions'></google-chart>
-				</div>
-				<div id="tabularData">
-					<table>
-						<thead>
-							<tr class="odd">
-								<td>Statistical Analysis</td>
-								<td>Hit Percentage</td>
+						<google-chart [data]='barChartOptions'></google-chart>
+					</div>
+					<div id="tabularData">
+						<table>
+							<thead>
+								<tr class="odd">
+									<td>Statistical Analysis</td>
+									<td>Hit Percentage</td>
+								</tr>
+							</thead>
+							<tr class="totalreach">
+								<td>Total Reach</td>
+								<td>100%</td>
 							</tr>
-						</thead>
-						<tr class="totalreach">
-							<td>Total Reach</td>
-							<td>100%</td>
-						</tr>
-						<tr class="clicks">
-							<td>Total clicks</td>
-							<td #clickPercentage></td>
-						</tr>
-						<tr class="unsubscribe">
-							<td>Usubscribes</td>
-							<td #unsubscribePercentage></td>
-						</tr>
-					</table>
-					
-				</div>
+							<tr class="clicks">
+								<td>Total clicks</td>
+								<td #clickPercentage></td>
+							</tr>
+							<tr class="unsubscribe">
+								<td>Usubscribes</td>
+								<td #unsubscribePercentage></td>
+							</tr>
+						</table>					
+					</div>
+			  </div>
+      </md-card-content>
+			<md-card-title>
+				<span><img src="../../app/resources/images/summary.png" style="width:60px;height:60px;margin-right:15px;opacity:100;"/></span><span>Recent Unsubscriptions</span>
+	  	</md-card-title>
+			<md-card-content>
+			  <p> Check how many people have opted out of this portal </p>
+			  <div id="summaryContainer">
+					<div id="summary-left">
+						<h4>Recent Unsubscription Statistics</h4>
+						<h6>A graphical representation of number of unsubscriptions per day</h6>
+				  </div>	  
+				  <div id="summary-right">
+					<h4> Unsubscription records </h4>
+					<p>
+						This is a section that gives a summary of recent unsubscribes for the last 60 days
+					</p>
+				  </div>
+			  </div>
+			  <div id="chartContainer">
+			  	<div id="chart">
+						<google-chart [data]='unsubscribeLineChartOptions'></google-chart>
+					</div>
+					<div id="tabularData">
+				    <table>
+                <thead>
+                    <tr>
+                        <td>Serial No</td>
+                        <td>Contact Name</td>
+                        <td>Email</td>
+												<td>Date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="noDataFound">
+                        <td colspan="8">No unsubscriptions found</td>            
+                    </tr>
+                        <tr *ngFor="let data of unsubscribes" [ngClass]="getClass(data.serialNo)">
+                            <td>{{data.serialNo}}</td>
+                            <td>{{data.firstName}} {{data.lastName}}</td>
+                            <td>{{data.email}}</td>
+														<td>{{data.unsubscribedOn}}</td>
+                        </tr>
+                </tbody>
+            </table>					
+					</div>
 			  </div>
       </md-card-content>
 </md-card>

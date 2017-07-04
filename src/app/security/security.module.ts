@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginService } from './login/login.service';
 import { RegistrationService } from './registration/registration.service';
+import {SelectModule} from 'ng2-select';
 import { AccountApprovalService} from './account-approval/accountapproval.service';
 import { DataTableModule, SharedModule, GrowlModule, Message, 
          ButtonModule, Header, Footer, DialogModule, SelectItem, PickListModule,
@@ -34,6 +35,7 @@ import { DataTableModule, SharedModule, GrowlModule, Message,
     CommonModule,
     FormsModule,HttpModule,JsonpModule,
     MaterialModule.forRoot(),
+    SelectModule,
     DataTableModule, ButtonModule, PickListModule,
     DialogModule, PanelModule, SharedModule, GrowlModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule
   ],

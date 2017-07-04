@@ -119,32 +119,6 @@ export class AnalyticsComponent {
 	  	this.columnChartOptions.dataTable.push([entry.subject,entry.totalReach,entry.clicks,entry.unsubscribes]);
 		}
   }
-	
-	public lineChartOptions:any =  {
-		chartType: 'LineChart',
-		dataTable: [
-		  [{label:'Company Name',type:'string'},{ label:'Nmber of Approved Registrations',type:'number'},{label:'Number of Pending Registrations',type:'number'}]
-		],
-		options: {
-			title: 'Company Wise Registrations',
-			animation:
-			{
-				duration: 1000,
-				easing: 'out',
-				startup:true
-			},
-			vAxis: 
-			{
-				title: 'Count'
-			},
-			hAxis: 
-			{
-				title: 'Company Name'
-			},
-			width:'95%',
-			height:'350'
-		}
-	  };
 
 		public regColumnChartOptions:any =  {
 		chartType: 'ColumnChart',

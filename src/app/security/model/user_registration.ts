@@ -1,3 +1,5 @@
+
+
 export class UserRegistration{
     username: string;
     password: string;
@@ -5,4 +7,11 @@ export class UserRegistration{
 	email: string;
     companyName: string;
     phone: string;
+    address:string;
+    country:string;
+    state:string;
+    city:string;
+    street:string;
+    federalId:string;
+    zipcode:string;
 }

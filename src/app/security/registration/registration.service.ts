@@ -2,6 +2,9 @@ import { Injectable }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions, RequestMethod, URLSearchParams } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import { UserRegistration } from '../model/user_registration';
+import { Country } from '../model/Country';
+import { State } from '../model/State';
+import { City } from '../model/City';
 
 @Injectable()
 export class RegistrationService{
@@ -19,6 +22,33 @@ export class RegistrationService{
         let body= JSON.stringify(model);
         console.log(body);
         return this.http.post('new/register', body, requestOptions ).catch(this.handleError);     
+  }
+
+  getCountries():Observable<Country[]> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('new/getCountries')
+        .map((res: Response) => res.json())
+        .catch(this.handleError);     
+
+  }
+
+  getStates(fullName:string):Observable<State[]> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('new/getStatesFromCountry/'+fullName, { headers: headers })
+            .map(res => res.json())
+            .catch(this.handleError);    
+
+  }
+
+  getCities(name:string):Observable<City[]> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('new/getCitiesFromState/'+name, { headers: headers })
+            .map(res => res.json())
+            .catch(this.handleError);      
+
   }
 
   private handleError (error: Response | any) {

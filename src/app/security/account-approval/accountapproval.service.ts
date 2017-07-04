@@ -35,6 +35,36 @@ export class AccountApprovalService{
 
   }
 
+  holdRequest(idToApprove:string): Observable<AccountApproval>
+  {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        let options = new RequestOptions({ headers: headers });
+        let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('id', idToApprove);
+        urlSearchParams.append('type','hold');
+        let body = urlSearchParams.toString();
+        return this.http.post('accounts/approveRequest', body, options )
+         .map((res: Response)  => { return; })
+		 .catch(this.handleError);;  
+
+  }
+
+  rejectRequest(idToApprove:string): Observable<AccountApproval>
+  {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        let options = new RequestOptions({ headers: headers });
+        let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('id', idToApprove);
+        urlSearchParams.append('type','reject');
+        let body = urlSearchParams.toString();
+        return this.http.post('accounts/approveRequest', body, options )
+         .map((res: Response)  => { return; })
+		 .catch(this.handleError);;  
+
+  }
+
   private handleError (error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     //console.log(error);
