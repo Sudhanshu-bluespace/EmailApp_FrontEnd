@@ -6,24 +6,23 @@ import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { EmailAppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+//import { FileUploadComponent } from './email/contact/fileupload.component';
 import './rxjs-extensions';
 import 'rxjs/Rx';
 import { DefaultComponent } from './default/default.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+//import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { SecurityModule } from './security/security.module';
 import { EmailModule } from './email/email.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import {GlobalService} from './core/global.service';
 import {AuthorizationService} from './core/authorization.service';
 import {Ng2GoogleChartsModule} from 'ng2-google-charts';
 import {Tab} from './analytics/tab.component';
 import {Tabs} from './analytics/tabs.component';
 import {AnalyticsComponent} from './analytics/analytics.root.component';
-import { Uploader }      from 'angular2-http-file-upload';
-import {FileUploadComponent} from './email/contact/fileupload.component';
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
-import { RegistrationComponent } from './security/registration';
-//import {CarouselModule} from 'angular2-carousel-ztw/carousel.module';
+import { Uploader } from 'angular2-http-file-upload';
+//import { DataTableModule,SharedModule } from 'primeng/primeng';
 
 
 @NgModule({
@@ -31,13 +30,11 @@ import { RegistrationComponent } from './security/registration';
     AppComponent,
     HomeComponent,
     DefaultComponent,
-    DashboardComponent,
+   // DashboardComponent,
+	//FileUploadComponent,
 	Tab,
 	Tabs,
-    AnalyticsComponent,
-	FileUploadComponent,
-	FileSelectDirective,
-	RegistrationComponent
+    AnalyticsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +44,9 @@ import { RegistrationComponent } from './security/registration';
     EmailAppRoutingModule,
     SecurityModule,
     EmailModule,
-	Ng2GoogleChartsModule//,
-	//CarouselModule
+    DashboardModule,
+    //DataTableModule,SharedModule,
+	  Ng2GoogleChartsModule
   ],
   providers: [GlobalService,AuthorizationService,Uploader],
   bootstrap: [AppComponent]

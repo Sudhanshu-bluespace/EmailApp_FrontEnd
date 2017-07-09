@@ -1,33 +1,137 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from "../analytics/analytics.service";
 import { RecentChartSummary } from '../analytics/model/RecentChartSummary';
+import { RecentUnsubscribes } from '../analytics/model/RecentUnsubscribes';
+import { RecentUnsubscribedCount } from '../analytics/model/RecentUnsubscribedCount';
+import { JobStatusData } from '../analytics/model/JobStatusData';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GlobalService } from '../core/global.service';
 import { Observable }     from 'rxjs/Observable';
 import { ChartReadyEvent } from 'ng2-google-charts';
 import { ViewChild, ElementRef } from '@angular/core';
+import { Message } from "../message";
+import { BlockedContacts } from '../analytics/model/BlockedContacts';
+import { MenuItem } from "primeng/primeng";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrls: ['./dashboard.component.css','../email/contact/fileupload.component.css'],
   providers: [AnalyticsService]
 })
 export class DashboardComponent implements OnInit {
 
   userName:string
+  admin:boolean=false;
   constructor(private AnalyticsService: AnalyticsService, private router: Router,private globalService: GlobalService) {
 		  
 		let user = this.globalService.loggedInUser.loggedInUserName;
 		this.recentChartSummary(user);
+		this.recentUnsubscribedCount(60);
+		this.recentUnsubscribes(60);
+		this.getJobStatusDump(user);
 
+		//console.log("User Type : "+this.globalService.loggedInUser.userType);
+
+		if (this.globalService.loggedInUser.userType === 'ACC_TYPE_SUPER_ADMIN' || this.globalService.loggedInUser.userType === 'ACC_TYPE_ADMIN') 
+		{
+
+			this.admin = true;
+			this.getBlockedContacts();
+		}
   }
   summary:RecentChartSummary
+  unsubscribes:RecentUnsubscribes[]
+  unsubscribedCount:RecentUnsubscribedCount[]
   dataSet:any[]
+  msgs: Message[] = [];
+  noDataFound:boolean = false
+  //jobstatusdata:JobStatusData[]
+  blockedContacts:BlockedContacts[]
+  jobstatusdataQueued:JobStatusData[]=[];
+  jobstatusdataCompleted:JobStatusData[]=[];
+  jobstatusdataFailed:JobStatusData[]=[];
+  datatable_menu_items: MenuItem[];
+  selectedJob:JobStatusData
+
+  getBlockedContacts()
+  {
+	 this.AnalyticsService.getBlockedContacts()
+ 			.subscribe((data) => {
+                 this.blockedContacts = data;
+					},
+					error => {
+					});	
+  }
+
+  getJobStatusDump(userName:string)
+  {
+	   this.AnalyticsService.getJobStatusData(userName)
+ 			.subscribe((data) => {
+                 //this.jobstatusdata = data;
+						for(let entry of data)
+						{
+							if(entry.status==='COMPLETED')
+							{
+								this.jobstatusdataCompleted.push(entry);
+							}
+							else if(entry.status==='QUEUED')
+							{
+								this.jobstatusdataQueued.push(entry);
+							}
+							else if(entry.status==='FAILED')
+							{
+								this.jobstatusdataFailed.push(entry);
+							}
+						}
+					},
+					error => {
+					});	
+  }
+
+  cancelJob(data:JobStatusData)
+  {
+	  this.AnalyticsService.cancelJob(data.batchId,data.requestId)
+	  .subscribe((data)=>{
+			 this.msgs.push({ severity: "info", summary: "Job Cancelled", detail: "The cancellation request was procesed successfully" });
+	  },
+	  error => {
+			 this.msgs.push({ severity: "error", summary: "Failed to process cancellation request", detail: error });
+	  });
+  }
+
+  refreshStats()
+  {
+	    this.clear();
+	  	let user = this.globalService.loggedInUser.loggedInUserName;
+		this.getJobStatusDump(user);
+  }
+
+  clear()
+  {
+	  this.jobstatusdataQueued.splice(0);
+	  this.jobstatusdataCompleted.splice(0);
+	  this.jobstatusdataFailed.splice(0);
+  }
   
+  getClass(id:number)
+  {
+	  if(id%2===0)
+	  {
+		 // console.log("id "+id+" Return class as even");
+		  return "even";
+	  }
+	  else
+	  {
+		 // console.log("id "+id+"Return class as odd");
+			return "odd";
+	  }
+  }
 
   ngOnInit() {
-
+	   this.datatable_menu_items = [
+            {label: 'Cancel', icon: 'fa-close', command: (event) => this.cancelJob(this.selectedJob)}
+        ];
   }
   
   	@ViewChild('sentOnDate') sentOnDate: ElementRef;
@@ -55,9 +159,48 @@ export class DashboardComponent implements OnInit {
             error => {
             });		
   };
+
+  recentUnsubscribes(age: number){
+	    
+    this.AnalyticsService.recentUnsubscribes(age)
+            .subscribe((data) => {
+                 this.unsubscribes = data;
+				 if(this.unsubscribes.length===0)
+				 {
+					 this.noDataFound = true;
+				 }
+			console.log("unsubscribes: ",data);
+            },
+            error => {
+				this.noDataFound = true;
+            });		
+  };
+
+  recentUnsubscribedCount(age: number){
+	    
+    this.AnalyticsService.recentUnsubscribedCount(age)
+            .subscribe((data) => {
+                 this.unsubscribedCount = data;
+			console.log("unsubscribedCount: ",data);
+			this.myRecentUnsubscribedCountClick();
+            },
+            error => {
+            });		
+  };
   
   public ready(event: ChartReadyEvent) {
     console.log("Chart Ready",event.message);
+  }
+
+  public myRecentUnsubscribedCountClick():void {
+
+	  this.unsubscribeLineChartOptions = Object.create(this.unsubscribeLineChartOptions);
+	  let i=0;
+	  for(let entry of this.unsubscribedCount)
+	  {
+			this.unsubscribeLineChartOptions.dataTable.push([entry.unsubscribedOn,entry.count]);
+	  }
+
   }
   
   public myClick():void {
@@ -67,6 +210,32 @@ export class DashboardComponent implements OnInit {
       this.barChartOptions.dataTable[2][1] = this.summary.clicks;
 	  this.barChartOptions.dataTable[3][1] = this.summary.unsubscribes;
   }
+
+  	public unsubscribeLineChartOptions:any =  {
+		chartType: 'LineChart',
+		dataTable: [
+		  [{label:'Date',type:'string'},{ label:'Nmber of Unsubscriptions',type:'number'}]
+		],
+		options: {
+			title: 'Recent Unsubscribes',
+			animation:
+			{
+				duration: 1000,
+				easing: 'out',
+				startup:true
+			},
+			vAxis: 
+			{
+				title: 'Count'
+			},
+			hAxis: 
+			{
+				title: 'Date'
+			},
+			width:'95%',
+			height:'350'
+		}
+	  };
 	
 	  public barChartOptions:any = {
 		  
@@ -86,6 +255,12 @@ export class DashboardComponent implements OnInit {
 			bar: 
 			{ 
 				groupWidth: '50%' 
+			},
+			animation:
+			{
+				duration: 1000,
+				easing: 'out',
+				startup:true
 			},
 			hAxis: {
 				title: 'Count',

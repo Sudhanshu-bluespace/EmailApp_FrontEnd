@@ -1,3 +1,4 @@
+<p-growl [value]="msgs"></p-growl>
 <form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #loginForm="ngForm">
   <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
   <div class="col-xs-8 col-sm-6 col-md-4 col-lg-4 col-xl-4">
@@ -26,10 +27,12 @@
         </table>
       </md-card-content>
       <md-card-actions>
-        <button md-button type="submit" md-raised-button color="primary" [disabled]="!loginForm.form.valid">Submit</button>
+        <button md-button type="submit" (click)="showDialog()" md-raised-button color="primary" [disabled]="!loginForm.form.valid">Submit</button>
         <button md-button md-raised-button color="primary" (click)=home()>Cancel</button>
       </md-card-actions>
     </md-card>
   </div>
   <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+   <!--p-dialog header="Status..." [(visible)]="loggedin"  modal="modal" (onAfterShow)="login()" minWidth="200px">
+    </p-dialog-->
 </form>

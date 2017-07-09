@@ -3,6 +3,7 @@ import { LoginService } from "./login.service";
 import { User } from '../model/user';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GlobalService } from '../../core/global.service';
+import { Message } from "../../message";
 
 @Component({
   selector: 'login',
@@ -14,6 +15,9 @@ export class LoginComponent implements OnInit {
   submitted = false;
   username : string;
   password : string;
+  msgs: Message[] = [];
+  loggedin: boolean = false;
+  user:User;
   
   constructor(private loginService: LoginService, private router: Router,private globalService: GlobalService) {     
  }
@@ -32,27 +36,37 @@ export class LoginComponent implements OnInit {
 
   login(username: string ,password: string) {
     this.loginService.login(this.username,this.password)
-            .subscribe(() => {
+            .subscribe((data) => {
+              this.user = data;
+              //console.log(this.user.uiRoles+ " | "+this.user.userType+' | '+this.user);
                  this.loggedInUser();
             },
             error => {
-                alert("Login failed: "+error);
+                //alert("Login failed: "+error);
+				this.msgs.push({ severity: "error", summary: "Login failed", detail: error });
+                this.loggedin = false;
             });
   };
   
   home() {
 	  this.router.navigate(['/']);
   }
+  
+  showDialog() {
+        this.loggedin = true;
+    }
 
   loggedInUser() {
 
     this.loginService.loggedInUser()
             .subscribe((user) => {
                  //console.log('user from server ',user);
+                 //console.log('Stringified user',JSON.stringify(user));
                  this.globalService.loggedInUser = user;
                  //sessionStorage.setItem('loggedInUser',JSON.stringify(user));
                  this.globalService.userLoggedIn = true;
                  sessionStorage.setItem('userLoggedIn','true'); 
+                 //console.log("User Authenticated.. Setting session storage and Calling pagelinks");
                  this.pageLinksAllowedForUser();     
             },
             error => {
@@ -71,7 +85,7 @@ export class LoginComponent implements OnInit {
                  this.router.navigate(['dashboard']);         
             },
             error => {
-                
+                console.log("Error page links : "+error);
             });
   };
 

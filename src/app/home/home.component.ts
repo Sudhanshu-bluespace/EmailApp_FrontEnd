@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   logout() {
     sessionStorage.clear();
     localStorage.clear();
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
     this.loginService.logout().subscribe(() => {
       window.location.reload();
     },

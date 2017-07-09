@@ -9,6 +9,7 @@ import { UserAccount } from '../model/user_account';
 import { UserAccountService } from "../user-account/user-account.service";
 import { UserAccountUserGroup } from "../model/user_account_user_group";
 import { AuthorizationService } from '../../core/authorization.service';
+import { Company } from '../model/Company';
 
 @Component({
   selector: 'user-account',
@@ -27,6 +28,7 @@ export class UserAccountComponent implements OnInit {
   displayUserAccountDetails: boolean;
   updateUserAccount: boolean;
   msgs: Message[] = [];
+  companylist:Company[] = [];
 
   constructor(private userAccountService: UserAccountService, private userGroupService: UserGroupService, private authorizationService: AuthorizationService) { }
 
@@ -60,6 +62,14 @@ export class UserAccountComponent implements OnInit {
 
       });
   };
+  
+  getCompanyList()
+  {
+	 this.userAccountService.getCompanyList()
+      .subscribe(data => {
+        this.companylist = data;
+      });
+  }
 
   searchUserGroups() {
     this.sourceUserAccountUserGroups = [];

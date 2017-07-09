@@ -60,11 +60,29 @@ export class ContactService {
         return body || {};
     }
 
-    private handleError(error: any) {
+    /*private handleError(error: any) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.error(errMsg);
         return Observable.throw(errMsg);
+    }*/
+
+    private handleError (error: Response | any) {
+    // In a real world app, we might use a remote logging infrastructure
+    //console.log(error);
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      console.log("Raw error : "+error.toString);
+      console.log("Body : "+body);
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+      console.log("Error not a response : "+errMsg);
     }
+    //console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
 
 }

@@ -1,0 +1,59 @@
+#mainContainer
+{
+    width:94%;
+}
+
+#pendingapprovaltable
+{
+    padding:15px;
+}
+
+#pendingapprovaltable table {
+	width:100%;
+    /*border:2px solid #BDBDBE;*/
+    -webkit-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+    box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+}
+
+#pendingapprovaltable table thead tr {
+	background-color:#604688;
+	color:white;
+    text-align:center;
+}
+
+table tr
+{
+    padding:7px;
+}
+
+#pendingapprovaltable table thead tr td {
+    border-right:1px solid #ffffff;
+    padding:10px;
+}
+
+#pendingapprovaltable table tr td {
+	padding:3px;
+    text-align:center;
+    border-right:1px solid #BDBDBE;
+}
+
+button{
+    width:90%;
+    height:80%;
+    overflow:hidden;
+}
+
+md-card {
+		/*-webkit-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+-moz-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+margin-top:2vh;
+background:white;
+border-radius: 12px 12px 12px 12px;
+-moz-border-radius: 12px 12px 12px 12px;
+-webkit-border-radius: 12px 12px 12px 12px;
+border: 0px solid #000000;*/
+min-height:25vh;
+width:105%;
+}

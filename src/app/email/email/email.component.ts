@@ -36,7 +36,8 @@ export class EmailComponent {
                 this.selectedGroups;
                 this.active = false;
                 setTimeout(() => this.active = true, 0);
-                this.msgs.push({ severity: "info", summary: "Email sent successfully.", detail: "" });
+                this.msgs.push({ severity: "info", summary: "Email campaign triggered successully.", 
+                    detail: "Based on the number of contacts targeted, the campaign might take longer to complete. Visit your dashboard to see the progress of the Jobs." });
                 this.emailSending = false;
             },
             error => {

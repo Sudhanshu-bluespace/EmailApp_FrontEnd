@@ -19,9 +19,18 @@ export class EmailService {
     }
 
     private handleError(error: any) {
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg);
+        let errMsg: string;
+        if (error instanceof Response) 
+        {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = `${error.status} - ${err}`;
+        } 
+        else 
+        {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        //console.error(errMsg);
         return Observable.throw(errMsg);
     }
 
