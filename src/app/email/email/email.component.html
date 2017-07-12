@@ -33,10 +33,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" style="overflow:hidden;height:400px;">
                     <label for="message">Message*</label>
-                    <textarea class="form-control" placeholder="Required" rows="10" id="message" required name="message" [(ngModel)]="emailVO.message"
-                        #message="ngModel"></textarea>
+                    <!--textarea class="form-control" placeholder="Required" rows="10" id="message" required name="message" [(ngModel)]="emailVO.message"
+                        #message="ngModel"></textarea-->
+                    <p-editor [(ngModel)]="emailVO.message" [style]="{'height':'320px'}" placeholder="Required" #message="ngModel" name="message" required #message="ngModel">
+                    </p-editor>    
                     <div [hidden]="message.valid || message.pristine" class="alert alert-danger">
                         Message is required
                     </div>

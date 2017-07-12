@@ -18,14 +18,14 @@
     <header>User Accounts</header>
     <p-column field="username" header="Name" [sortable]="true" [filter]="true"></p-column>
     <p-column field="email" header="Email" [sortable]="true" [filter]="true"></p-column>
-    <footer>
+    <p-footer>
       <div class="row">
         <div class="col-md-12">
           <button md-raised-button color="primary" (click)="createUserAccount()" *ngIf="authorizationService.isUserHasRole('UI_USERS_CREATE')">Create</button>
-          <!--button md-raised-button color="primary">Import</button-->
+          <button md-raised-button color="primary">Import</button>
         </div>
       </div>
-    </footer>
+    </p-footer>
   </p-dataTable>
 </div>
 <div *ngIf="displayUserAccountDetails">
@@ -56,7 +56,7 @@
       <div>
         <p-pickList [source]="sourceUserAccountUserGroups" [target]="targetUserAccountUserGroups" sourceHeader="Available Groups" targetHeader="Selected Groups"
           [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
-          <template let-userAccountUserRole>
+          <template let-userAccountUserRole pTemplate="item">
             <div class="ui-helper-clearfix">
               <div style="font-size:14px;float:center;margin:15px 5px 0 0">{{userAccountUserRole.userGroup.groupName}}</div>
             </div>

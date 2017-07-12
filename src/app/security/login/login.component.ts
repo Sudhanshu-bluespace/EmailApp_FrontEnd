@@ -37,8 +37,9 @@ export class LoginComponent implements OnInit {
   login(username: string ,password: string) {
     this.loginService.login(this.username,this.password)
             .subscribe((data) => {
+              console.log("Raw res : "+data.loggedInUserName+data.uiRoles+data.userType);
               this.user = data;
-              //console.log(this.user.uiRoles+ " | "+this.user.userType+' | '+this.user);
+              console.log("User Data : "+this.user.uiRoles+ " | "+this.user.userType+' | '+this.user);
                  this.loggedInUser();
             },
             error => {
@@ -78,7 +79,7 @@ export class LoginComponent implements OnInit {
 
     this.loginService.pageLinksAllowedForUser()
             .subscribe((pageLinks) => {
-                 //console.log('pageLinks from user ',pageLinks);
+                 console.log('pageLinks from user ',pageLinks);
                  this.globalService.pageLinks = pageLinks;
                  //sessionStorage.setItem('pageLinks',JSON.stringify(pageLinks)); 
                  this.router.navigate(['/']);                 

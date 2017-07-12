@@ -18,14 +18,14 @@
     <header>User Roles</header>
     <p-column field="roleName" header="Name" [sortable]="true" [filter]="true"></p-column>
     <p-column field="description" header="Description" [sortable]="true" [filter]="true"></p-column>
-    <footer>
+    <p-footer>
       <div class="row">
         <div class="col-md-12">
           <button md-raised-button color="primary" (click)="createUserRole()" *ngIf="authorizationService.isUserHasRole('UI_USER_ROLES_CREATE')">Create</button>
-          <button md-raised-button color="primary">Import</button>
+          <!--button md-raised-button color="primary">Import</button-->
         </div>
       </div>
-    </footer>
+    </p-footer>
   </p-dataTable>
 </div>
 <div *ngIf="displayUserRoleDetails">

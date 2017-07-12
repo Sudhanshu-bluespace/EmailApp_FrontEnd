@@ -4,6 +4,7 @@ import { Group } from "../group/group";
 import { CommonService } from "../shared/common.service";
 import { EmailService } from "./email.service";
 import { Message } from "../../message";
+import { EditorModule,SharedModule } from 'primeng/primeng';
 
 @Component({
     templateUrl: "./email.component.html"

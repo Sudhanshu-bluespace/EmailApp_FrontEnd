@@ -28,6 +28,7 @@ export class AccountApprovalService{
         let options = new RequestOptions({ headers: headers });
         let urlSearchParams = new URLSearchParams();
         urlSearchParams.append('id', idToApprove);
+         urlSearchParams.append('type','APPROVE');
         let body = urlSearchParams.toString();
         return this.http.post('accounts/approveRequest', body, options )
          .map((res: Response)  => { return; })

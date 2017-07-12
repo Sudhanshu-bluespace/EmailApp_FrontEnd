@@ -17,12 +17,12 @@ import { EmailService } from "./email/email.service";
 import { EmailServerPropertiesService } from "./server/emailserverproperties.service";
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
-import { DataTableModule, SharedModule, GrowlModule, Message, 
+import { DataTableModule,EditorModule, SharedModule, GrowlModule, Message, 
          ButtonModule, Header, Footer, DialogModule, SelectItem,
          PanelModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule} from 'primeng/primeng';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, HttpModule, JsonpModule, MaterialModule.forRoot(), DataTableModule, ButtonModule, 
+    imports: [CommonModule, FormsModule, EditorModule,HttpModule, JsonpModule, MaterialModule.forRoot(), DataTableModule, ButtonModule, 
     DialogModule, PanelModule, SharedModule, GrowlModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule],
     declarations: [GroupComponent, ContactComponent, EmailServerComponent, EmailComponent, FileUploadComponent,	FileSelectDirective, FileDropDirective],
     providers: [ContactService, GroupService, CommonService, ContactGroupService, EmailServerService, EmailService,EmailServerPropertiesService]

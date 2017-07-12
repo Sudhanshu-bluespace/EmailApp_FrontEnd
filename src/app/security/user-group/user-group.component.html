@@ -18,14 +18,14 @@
     <header>User Groups</header>
     <p-column field="groupName" header="Name" [sortable]="true" [filter]="true"></p-column>
     <p-column field="description" header="Description" [sortable]="true" [filter]="true"></p-column>
-    <footer>
+    <p-footer>
       <div class="row">
         <div class="col-md-12">
           <button md-raised-button color="primary" (click)="createUserGroup()" *ngIf="authorizationService.isUserHasRole('UI_USER_GROUPS_CREATE')">Create</button>
           <button md-raised-button color="primary">Import</button>
         </div>
       </div>
-    </footer>
+    </p-footer>
   </p-dataTable>
 </div>
 <div *ngIf="displayUserGroupDetails">
@@ -42,7 +42,7 @@
       <div>
         <p-pickList [source]="sourceUserGroupUserRoles" [target]="targetUserGroupUserRoles" sourceHeader="Available Roles" targetHeader="Selected Roles"
           [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
-          <template let-userGroupUserRole>
+          <template let-userGroupUserRole pTemplate="item">
             <div class="ui-helper-clearfix">
               <div style="font-size:14px;float:center;margin:15px 5px 0 0">{{userGroupUserRole.userRole.roleName}}</div>
             </div>

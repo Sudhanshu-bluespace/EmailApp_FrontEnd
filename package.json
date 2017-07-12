@@ -30,17 +30,19 @@
     "angular2-http-file-upload": "^1.0.6",
     "bootstrap": "3.3.7",
     "core-js": "^2.4.1",
+    "latest": "^0.2.0",
     "ng2-file-upload": "^1.2.1",
     "ng2-google-charts": "^2.1.0",
     "ng2-select": "^1.2.0",
-    "primeng": "^1.0.0",
+    "primeng": "^2.0.0",
+    "quill": "^1.2.6",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
     "typescript": "^2.1.1",
     "zone.js": "^0.6.23"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0",
+    "@angular/cli": "^1.2.0",
     "@types/jasmine": "^2.5.36",
     "@types/node": "^6.0.46",
     "codelyzer": "1.0.0-beta.1",
@@ -56,6 +58,7 @@
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
     "typescript": "^2.0.10",
-    "webdriver-manager": "10.2.5"
+    "webdriver-manager": "10.2.5",
+    "webpack": "^3.1.0"
   }
 }
