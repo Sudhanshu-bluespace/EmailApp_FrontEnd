@@ -53,12 +53,12 @@ export class AnalyticsService {
 		let body = urlSearchParams.toString();
           return this.http.post('analytics/cancelJob',body,options)
 		 .map(res => res.json())
-		 .catch(this.handleError);;     
+		 .catch(this.handleError);  
   }
 
   recentChartSummary (userName: string):  Observable<RecentChartSummary>  {
         let headers = new Headers();
-		console.log("dashboard for "+userName);
+		//console.log("dashboard for "+userName);
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let options = new RequestOptions({ headers: headers });
 		let urlSearchParams = new URLSearchParams();
@@ -66,31 +66,33 @@ export class AnalyticsService {
 		let body = urlSearchParams.toString();
           return this.http.post('analytics/recentSummary',body,options)
 		 .map(res => res.json())
-		 .catch(this.handleError);;     
+		 .catch(this.handleError);   
   }
 
-  recentUnsubscribes (age: number):  Observable<RecentUnsubscribes[]>  {
+  recentUnsubscribes (age: number,isAdmin:string):  Observable<RecentUnsubscribes[]>  {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let options = new RequestOptions({ headers: headers });
 		let urlSearchParams = new URLSearchParams();
         urlSearchParams.append('age', age.toString());
+        urlSearchParams.append('isAdmin', isAdmin);
 		let body = urlSearchParams.toString();
           return this.http.post('analytics/getRecentUnsubscribes',body,options)
 		 .map(res => res.json())
-		 .catch(this.handleError);;     
+		 .catch(this.handleError);    
   }
 
-   recentUnsubscribedCount (age: number):  Observable<RecentUnsubscribedCount[]>  {
+   recentUnsubscribedCount (age: number,isAdmin:string):  Observable<RecentUnsubscribedCount[]>  {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let options = new RequestOptions({ headers: headers });
 		let urlSearchParams = new URLSearchParams();
         urlSearchParams.append('age', age.toString());
+        urlSearchParams.append('isAdmin', isAdmin);
 		let body = urlSearchParams.toString();
           return this.http.post('analytics/getRecentUnsubscribedCount',body,options)
 		 .map(res => res.json())
-		 .catch(this.handleError);;     
+		 .catch(this.handleError);    
   }
 
   companyWiseRegistrationStats(): Observable<CompanyWiseRegistrationDTO[]> {
@@ -106,7 +108,7 @@ export class AnalyticsService {
   
   campaignWisePerformanceSummary (userName: string):  Observable<CampaignWisePerformance[]>  {
         let headers = new Headers();
-		console.log("campaign wise summary for "+userName);
+		//console.log("campaign wise summary for "+userName);
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let options = new RequestOptions({ headers: headers });
 		let urlSearchParams = new URLSearchParams();
@@ -119,7 +121,7 @@ export class AnalyticsService {
   
   groupWiseUnsubscription (userName: string):  Observable<GroupWiseUnsubscription[]>  {
         let headers = new Headers();
-		console.log("groupwise unsubscription for "+userName);
+		//console.log("groupwise unsubscription for "+userName);
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let options = new RequestOptions({ headers: headers });
 		let urlSearchParams = new URLSearchParams();

@@ -29,8 +29,8 @@ export class CommonService {
         this.groupSearchCriteria = new GroupSearchCriteria();
     }
 
-    getAllContacts() {
-        this.contactService.getAllContacts()
+    getAllContacts(username:string) {
+        this.contactService.getAllContacts(username)
             .subscribe(
             contacts => {
                 this.contacts = contacts;
@@ -47,8 +47,8 @@ export class CommonService {
             );
     }
 
-    getAllContactsBySearchCriteria() {
-        this.contactService.getAllContactsByCriteria(this.contactSearchCriteria)
+    getAllContactsBySearchCriteria(username:string) {
+        this.contactService.getAllContactsByCriteria(this.contactSearchCriteria,username)
             .subscribe(
             contacts => {
                 this.contacts = contacts;
@@ -65,8 +65,8 @@ export class CommonService {
             );
     }
 
-    getAllGroups() {
-        this.groupService.getAllGroups()
+    getAllGroups(username:string) {
+        this.groupService.getAllGroups(username)
             .subscribe(
             groups => {
                 this.groupItems = [];
@@ -79,8 +79,8 @@ export class CommonService {
             );
     }
 
-    searchGroupsByCriteria() {
-        this.groupService.getAllGroupsBySearchCriteria(this.groupSearchCriteria)
+    searchGroupsByCriteria(username:string) {
+        this.groupService.getAllGroupsBySearchCriteria(this.groupSearchCriteria,username)
             .subscribe(
             groups => this.groups = groups
             );

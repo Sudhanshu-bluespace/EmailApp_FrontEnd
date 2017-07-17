@@ -10,6 +10,7 @@ import { GroupService } from "../group/group.service";
 import { CommonService } from "../shared/common.service";
 import { ContactSearchCriteria } from "../contact/contact_search_criteria";
 import { AuthorizationService } from '../../core/authorization.service';
+import { GlobalService } from '../../core/global.service';
 import { FileUploadComponent } from '../contact/fileupload.component';
 
 @Component({
@@ -28,12 +29,15 @@ export class ContactComponent implements OnInit {
     displayCreateDialog: boolean;
     updateContact: boolean;
     active: boolean = true;
+    username:string;
 
     constructor(private contactService: ContactService, private groupService: GroupService,
-        private commonService: CommonService,private authorizationService : AuthorizationService) { }
+        private commonService: CommonService,private authorizationService : AuthorizationService,private globalService:GlobalService) { 
+            this.username = globalService.loggedInUser.loggedInUserName;
+        }
 
     ngOnInit() {
-        this.commonService.getAllGroups();
+        this.commonService.getAllGroups(this.globalService.loggedInUser.loggedInUserName);
     }
 
     onSelectItemChange() {

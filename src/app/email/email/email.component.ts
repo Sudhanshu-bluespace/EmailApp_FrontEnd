@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Email } from "./email";
 import { Group } from "../group/group";
 import { CommonService } from "../shared/common.service";
+import { GlobalService } from '../../core/global.service';
 import { EmailService } from "./email.service";
 import { Message } from "../../message";
 import { EditorModule,SharedModule } from 'primeng/primeng';
@@ -16,10 +17,10 @@ export class EmailComponent {
     msgs: Message[] = [];
     emailSending: boolean = false;
 
-    constructor(private emailService: EmailService, private commonService: CommonService) { }
+    constructor(private emailService: EmailService, private commonService: CommonService, private globalService:GlobalService) { }
 
     ngOnInit() {
-        this.commonService.getAllGroups();
+        this.commonService.getAllGroups(this.globalService.loggedInUser.loggedInUserName);
     }
 
     test() {

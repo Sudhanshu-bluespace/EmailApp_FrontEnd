@@ -28,7 +28,23 @@ export class HomeComponent implements OnInit {
   }
 
   get userLoggedIn(): boolean {
-    return this.globalService.userLoggedIn;
+    //console.log("checking user logged in");
+    let userLoggedIn = false;
+    if(this.globalService.userLoggedIn)
+    {
+      //console.log("globalServic is enabled - "+this.globalService.userLoggedIn);
+      userLoggedIn = this.globalService.userLoggedIn;
+      return userLoggedIn;
+
+    }
+    else if(sessionStorage.getItem('userLoggedIn'))
+    {
+        //console.log("************************* gobal service oops.. check sessionStorage : "+sessionStorage.getItem('loggedInUser')+" | "+sessionStorage.getItem('userLoggedIn'));
+        this.globalService.userLoggedIn = true;
+        this.globalService.loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));    
+        return (sessionStorage.getItem('userLoggedIn')==='true');
+    }
+
   }
 
   logout() {
@@ -46,9 +62,9 @@ changePassword() {
     this.router.navigate(['changePassword']);
   }
   
-analytics() {
+/*analytics() {
 	this.router.navigate(['analytics']);
-}	
+}	*/
 
 
   get pageLinks(): PageLink[] {

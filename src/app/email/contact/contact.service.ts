@@ -27,17 +27,24 @@ export class ContactService {
             .catch(this.handleError);
     }
 
-    getAllContactsByCriteria(contactSearchCriteria: ContactSearchCriteria): Observable<Contact[]> {
+    getAllContactsByCriteria(contactSearchCriteria: ContactSearchCriteria,username:string): Observable<Contact[]> {
         let headers = new Headers();  
         headers.append('Content-Type', 'application/json');
+        contactSearchCriteria.username = username;
         return this.http.post(this.contactUrl + "/searchCriteria", JSON.stringify(contactSearchCriteria), { headers: headers })
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    getAllContacts(): Observable<Contact[]> {
-        return this.http.get(this.contactUrl)
-            .map((res: Response) => res.json())
+    getAllContacts(username:string): Observable<Contact[]> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        let options = new RequestOptions({ headers: headers });
+        let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('username', username);
+        let body = urlSearchParams.toString(); 
+        return this.http.post(this.contactUrl+'/getAllByCreatedUser', body, options )
+            .map(res => res.json())
             .catch(this.handleError);
     }
 

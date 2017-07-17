@@ -80,7 +80,7 @@
            <button md-button [routerLink]="['user_roles']" routerLinkActive="active">User Roles</button>
         </td>
       </tr>
-      <tr *ngIf="authorizationService.isUserHasRole('UI_ACCESS_GROUPS')">
+      <tr *ngIf="authorizationService.isUserHasRole('UI_USER_GROUPS_ACCESS')">
 		<td>
            <img src="../../app/resources/images/usergroup.png"/>
         </td>

@@ -6,6 +6,7 @@ import { RecentUnsubscribedCount } from '../analytics/model/RecentUnsubscribedCo
 import { JobStatusData } from '../analytics/model/JobStatusData';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GlobalService } from '../core/global.service';
+import { AuthorizationService } from '../core/authorization.service';
 import { Observable }     from 'rxjs/Observable';
 import { ChartReadyEvent } from 'ng2-google-charts';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -23,9 +24,21 @@ export class DashboardComponent implements OnInit {
 
   userName:string
   admin:boolean=false;
-  constructor(private AnalyticsService: AnalyticsService, private router: Router,private globalService: GlobalService) {
+  isAdmin:string;
+  constructor(private AnalyticsService: AnalyticsService, private router: Router,private globalService: GlobalService,private authService:AuthorizationService) {
 		  
 		let user = this.globalService.loggedInUser.loggedInUserName;
+		if (this.globalService.loggedInUser.userType === 'ACC_TYPE_SUPER_ADMIN' || this.globalService.loggedInUser.userType === 'ACC_TYPE_ADMIN') 
+		{
+			this.admin = true;
+			this.isAdmin = "true";
+			this.getBlockedContacts();
+		}
+		else
+		{
+			this.isAdmin = "false";
+		}
+
 		this.recentChartSummary(user);
 		this.recentUnsubscribedCount(60);
 		this.recentUnsubscribes(60);
@@ -33,12 +46,7 @@ export class DashboardComponent implements OnInit {
 
 		//console.log("User Type : "+this.globalService.loggedInUser.userType);
 
-		if (this.globalService.loggedInUser.userType === 'ACC_TYPE_SUPER_ADMIN' || this.globalService.loggedInUser.userType === 'ACC_TYPE_ADMIN') 
-		{
 
-			this.admin = true;
-			this.getBlockedContacts();
-		}
   }
   summary:RecentChartSummary
   unsubscribes:RecentUnsubscribes[]
@@ -162,7 +170,7 @@ export class DashboardComponent implements OnInit {
 
   recentUnsubscribes(age: number){
 	    
-    this.AnalyticsService.recentUnsubscribes(age)
+    this.AnalyticsService.recentUnsubscribes(age,this.isAdmin)
             .subscribe((data) => {
                  this.unsubscribes = data;
 				 if(this.unsubscribes.length===0)
@@ -178,7 +186,7 @@ export class DashboardComponent implements OnInit {
 
   recentUnsubscribedCount(age: number){
 	    
-    this.AnalyticsService.recentUnsubscribedCount(age)
+    this.AnalyticsService.recentUnsubscribedCount(age,this.isAdmin)
             .subscribe((data) => {
                  this.unsubscribedCount = data;
 			console.log("unsubscribedCount: ",data);

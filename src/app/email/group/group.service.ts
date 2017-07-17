@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers, Response } from "@angular/http";
+import { Http, Headers, Response,RequestOptions, URLSearchParams } from "@angular/http";
 import { Group } from "./group";
 import { Observable } from "rxjs/Observable";
 import { GroupSearchCriteria } from "./group_search_criteria";
@@ -13,8 +13,14 @@ export class GroupService {
 
     constructor(private http: Http) { }
 
-    getAllGroups(): Observable<Group[]> {
-        return this.http.get(this.groupUrl)
+    getAllGroups(username:string): Observable<Group[]> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        let options = new RequestOptions({ headers: headers });
+        let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('username', username);
+        let body = urlSearchParams.toString(); 
+        return this.http.post(this.groupUrl+'/searchAll', body, options )
             .map(res => res.json())
             .catch(this.handleError);
     }
@@ -25,10 +31,11 @@ export class GroupService {
             .catch(this.handleError);
     }
 
-    getAllGroupsBySearchCriteria(groupSearchCriteria: GroupSearchCriteria): Observable<Group[]> {
+    getAllGroupsBySearchCriteria(groupSearchCriteria: GroupSearchCriteria,username:string): Observable<Group[]> {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append('Access-Control-Allow-Origin', '*');      
+        headers.append('Access-Control-Allow-Origin', '*');
+        groupSearchCriteria.username = username;    
         return this.http.post(this.groupUrl + "/searchCriteria", JSON.stringify(groupSearchCriteria), { headers: headers })
             .map(res => res.json())
             .catch(this.handleError);

@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-md-6">               
-                <button type="submit" pButton icon="fa fa-search" pButton label="Search" *ngIf="authorizationService.isUserHasRole('UI_ACCESS_GROUPS')" (click)="commonService.searchGroupsByCriteria()"></button>
+                <button type="submit" pButton icon="fa fa-search" pButton label="Search" *ngIf="authorizationService.isUserHasRole('UI_ACCESS_GROUPS')" (click)="commonService.searchGroupsByCriteria(username)"></button>
                 <button type="button" pButton icon="fa fa-refresh" pButton label="Reset" (click)="commonService.resetGroupsBySearchCriteria()"></button>
             </div>
         </div>
@@ -25,14 +25,14 @@
         <header>Groups</header>
         <p-column field="name" header="Group Name" [sortable]="true" [filter]="true"></p-column>
         <p-column field="comments" header="Comments" [sortable]="true" [filter]="true"></p-column>
-        <footer>
+        <p-footer>
             <div class="row">
                 <div class="col-md-12">
                     <button type="button" icon="fa fa-plus" pButton label="Create" *ngIf="authorizationService.isUserHasRole('UI_CREATE_GROUPS')" (click)="createGroupClick()"></button>
                     <!--button type="button" icon="fa fa-download" pButton label="Import"></button-->
                 </div>
             </div>
-        </footer>
+        </p-footer>
     </p-dataTable>
 
     <!-- <p-dialog [(visible)]="displayViewDialog" [responsive]="true" showEffect="fade" [modal]="true" *ngIf="groupSelected" [width]="800"> -->

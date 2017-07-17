@@ -8,6 +8,7 @@ import { GlobalService } from '../core/global.service';
 import { Observable }     from 'rxjs/Observable';
 import { ChartReadyEvent } from 'ng2-google-charts';
 import { ViewChild, ElementRef } from '@angular/core';
+import { AuthorizationService } from '../core/authorization.service';
 
 import {Tabs} from './tabs.component';
 import {Tab} from './tab.component';
@@ -23,7 +24,7 @@ export class AnalyticsComponent {
 
 	
   userName:string
-  constructor(private AnalyticsService: AnalyticsService, private router: Router,private globalService: GlobalService) {
+  constructor(private AnalyticsService: AnalyticsService, private router: Router,private globalService: GlobalService,private authorizationService:AuthorizationService) {
 		  
 		let user = this.globalService.loggedInUser.loggedInUserName;
 		this.campaignWisePerformance(user);
@@ -40,10 +41,10 @@ export class AnalyticsComponent {
     this.AnalyticsService.campaignWisePerformanceSummary(username)
             .subscribe((data) => {
                  this.campaignWisePerformanceSummaryResponse=data;
-			for (let entry of this.campaignWisePerformanceSummaryResponse) 
+		/*	for (let entry of this.campaignWisePerformanceSummaryResponse) 
 			{
 				console.log(entry.campaignName+" | "+entry.totalReach); // 1, "string", false
-			} 
+			}*/ 
 			//console.log("response : "+this.summary.unsubscribes+" | "+this.summary.reach+" | "+this.summary.clicks);
 			this.myClickCampaignWisePerformance();
 			//this.loadData("Sent on "+this.summary.sentOn,this.summary.subject,this.summary.clickPercentage,this.summary.unsubscribePercentage);
@@ -57,10 +58,10 @@ export class AnalyticsComponent {
     this.AnalyticsService.companyWiseRegistrationStats()
             .subscribe((data) => {
                  this.companyWiseRegistrationSummary=data;
-			for (let entry of this.companyWiseRegistrationSummary) 
+			/*for (let entry of this.companyWiseRegistrationSummary) 
 			{
 				console.log(entry.companyName+" | "+entry.approvedCount+" | "+entry.pendingCount); // 1, "string", false
-			} 
+			}*/ 
 			//console.log("response : "+this.summary.unsubscribes+" | "+this.summary.reach+" | "+this.summary.clicks);
 			this.myClickCompanyWiseRegistration();
 			//this.loadData("Sent on "+this.summary.sentOn,this.summary.subject,this.summary.clickPercentage,this.summary.unsubscribePercentage);
@@ -73,10 +74,10 @@ export class AnalyticsComponent {
 	  this.AnalyticsService.groupWiseUnsubscription(username)
             .subscribe((data) => {
                  this.groupWiseUnsubscriptionResponse=data;
-			for (let entry of this.groupWiseUnsubscriptionResponse) 
+		/*	for (let entry of this.groupWiseUnsubscriptionResponse) 
 			{
 				console.log(entry.groupName+" | "+entry.unsubscribed); // 1, "string", false
-			}
+			}*/
 			//console.log("response : "+this.summary.unsubscribes+" | "+this.summary.reach+" | "+this.summary.clicks);
 			this.myClickGroupWiseUnsubscribes();
 			//this.loadData("Sent on "+this.summary.sentOn,this.summary.subject,this.summary.clickPercentage,this.summary.unsubscribePercentage);
@@ -92,7 +93,7 @@ export class AnalyticsComponent {
     this.barChartOptions = Object.create(this.barChartOptions);
 	for(let entry of this.groupWiseUnsubscriptionResponse)
 	{
-	  console.log("Setting values for : "+entry.groupName+" | "+entry.unsubscribed);	
+	  //console.log("Setting values for : "+entry.groupName+" | "+entry.unsubscribed);	
 	  this.barChartOptions.dataTable.push([entry.groupName,entry.unsubscribed]);
 	}
   }
@@ -102,7 +103,7 @@ export class AnalyticsComponent {
     this.regColumnChartOptions = Object.create(this.regColumnChartOptions);
 	for(let entry of this.companyWiseRegistrationSummary)
 	{
-	  console.log("Setting values for : "+entry.companyName);	
+	  //console.log("Setting values for : "+entry.companyName);	
 	  this.regColumnChartOptions.dataTable.push([entry.companyName,entry.approvedCount,entry.pendingCount]);
 	}
   }
@@ -110,12 +111,12 @@ export class AnalyticsComponent {
   public myClickCampaignWisePerformance():void 
 	{
     // forces a reference update (otherwise angular doesn't detect the change)
-		console.log("Combo chart values : "+this.columnChartOptions.dataTable[0][0]+" | "+this.columnChartOptions.dataTable[0][1]);
+		//console.log("Combo chart values : "+this.columnChartOptions.dataTable[0][0]+" | "+this.columnChartOptions.dataTable[0][1]);
     this.columnChartOptions = Object.create(this.columnChartOptions);
 
 		for(let entry of this.campaignWisePerformanceSummaryResponse)
 		{
-	  	console.log("Setting values for : "+entry.subject+" | "+entry.totalReach+" | "+entry.clicks+" | "+entry.unsubscribes);	
+	  	//console.log("Setting values for : "+entry.subject+" | "+entry.totalReach+" | "+entry.clicks+" | "+entry.unsubscribes);	
 	  	this.columnChartOptions.dataTable.push([entry.subject,entry.totalReach,entry.clicks,entry.unsubscribes]);
 		}
   }

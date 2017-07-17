@@ -3,4 +3,5 @@ export class ContactSearchCriteria {
     lastName: string;
     email: string;
     groupIds: number[];
+    username:string;
 }

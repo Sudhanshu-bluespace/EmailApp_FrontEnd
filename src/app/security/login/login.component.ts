@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
   login(username: string ,password: string) {
     this.loginService.login(this.username,this.password)
             .subscribe((data) => {
-              console.log("Raw res : "+data.loggedInUserName+data.uiRoles+data.userType);
+              //console.log("Raw res : "+data.loggedInUserName+data.uiRoles+data.userType);
               this.user = data;
-              console.log("User Data : "+this.user.uiRoles+ " | "+this.user.userType+' | '+this.user);
+              //console.log("User Data : "+this.user.uiRoles+ " | "+this.user.userType+' | '+this.user);
                  this.loggedInUser();
             },
             error => {
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
                  //console.log('user from server ',user);
                  //console.log('Stringified user',JSON.stringify(user));
                  this.globalService.loggedInUser = user;
-                 //sessionStorage.setItem('loggedInUser',JSON.stringify(user));
+                 sessionStorage.setItem('loggedInUser',JSON.stringify(user));
                  this.globalService.userLoggedIn = true;
                  sessionStorage.setItem('userLoggedIn','true'); 
                  //console.log("User Authenticated.. Setting session storage and Calling pagelinks");
@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
             .subscribe((pageLinks) => {
                  console.log('pageLinks from user ',pageLinks);
                  this.globalService.pageLinks = pageLinks;
-                 //sessionStorage.setItem('pageLinks',JSON.stringify(pageLinks)); 
+                 sessionStorage.setItem('pageLinks',JSON.stringify(pageLinks)); 
                  this.router.navigate(['/']);                 
                  this.router.navigate(['dashboard']);         
             },

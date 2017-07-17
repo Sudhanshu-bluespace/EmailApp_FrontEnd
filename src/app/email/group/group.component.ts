@@ -4,6 +4,7 @@ import { GroupService } from "./group.service";
 import { Group } from "./group";
 import { CommonService } from "../shared/common.service";
 import { AuthorizationService } from '../../core/authorization.service';
+import { GlobalService } from '../../core/global.service';
 
 @Component({
     templateUrl: "./group.component.html"
@@ -19,9 +20,12 @@ export class GroupComponent {
     displayCreateDialog: boolean;
     displayViewDialog: boolean;
     active: boolean = true;
+    username:string;
 
     constructor(private groupService: GroupService, private commonService: CommonService
-        , private authorizationService: AuthorizationService) { }
+        , private authorizationService: AuthorizationService,private globalService:GlobalService) { 
+            this.username = globalService.loggedInUser.loggedInUserName;
+        }
 
     onRowSelect(event: any) {
         this.groupSelected = event.data;
@@ -55,7 +59,7 @@ export class GroupComponent {
                 //this.commonService.searchGroupsByCriteria();
                 this.commonService.resetGroupsBySearchCriteria();
                 this.displayCreateDialog = false;
-                this.commonService.getAllGroups();
+                this.commonService.getAllGroups(this.globalService.loggedInUser.loggedInUserName);
                 this.commonService.contacts = [];
                 this.msgs.push({ severity: "info", summary: "Group created successfully.", detail: "" });
             },

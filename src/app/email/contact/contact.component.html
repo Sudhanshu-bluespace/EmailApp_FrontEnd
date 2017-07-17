@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <p-multiSelect id="groupsSearchCriteria" defaultLabel="Choose Groups - Required" name="groupsSearchCriteria" [options]="commonService.groupNamesForSearch"
+                    <p-multiSelect id="groupsSearchCriteria" defaultLabel=" Choose Groups - Required" name="groupsSearchCriteria" [options]="commonService.groupNamesForSearch"
                         (onChange)="onSelectItemChange()" [(ngModel)]="commonService.contactSearchCriteria.groupIds" [style]="{'width':'100%'}"
                         required #groupsSearchCriteria="ngModel"></p-multiSelect>
                     <div [hidden]="groupsSearchCriteria.valid || groupsSearchCriteria.pristine" class="alert alert-danger">
@@ -38,7 +38,7 @@
             <div class="col-md-12">
                 <div class="col-md-5"></div>
                 <button type="submit" *ngIf="authorizationService.isUserHasRole('UI_ACCESS_CONTACTS')" [disabled]="!contactForm.form.valid"
-                    pButton icon="fa fa-search" pButton label="Search" (click)="commonService.getAllContactsBySearchCriteria()"></button>
+                    pButton icon="fa fa-search" pButton label="Search" (click)="commonService.getAllContactsBySearchCriteria(username)"></button>
                 <button type="button" pButton icon="fa fa-refresh" pButton label="Reset" (click)="commonService.resetContactsBySearchCriteria()"></button>
             </div>
         </div>
@@ -51,7 +51,7 @@
         <p-column field="lastName" header="Last Name" [sortable]="true" [filter]="true"></p-column>
         <p-column field="email" header="Email Id" [sortable]="true" [filter]="true"></p-column>
         <p-column field="groupDetails" header="Groups" [sortable]="true" [filter]="true" [colspan]="2"></p-column>
-        <footer>
+        <p-footer>
             <div class="row">
                 <div class="col-md-12">
                     <button type="button" icon="fa fa-plus" *ngIf="authorizationService.isUserHasRole('UI_CREATE_CONTACTS')" pButton label="Create"
@@ -61,7 +61,7 @@
 					</button-->
                 </div>
             </div>
-        </footer>
+        </p-footer>
     </p-dataTable>
 
     <div class="panel panel-default" *ngIf="displayViewDialog && contactSelected">

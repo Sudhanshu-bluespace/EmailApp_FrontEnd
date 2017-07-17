@@ -22,4 +22,28 @@ export class AuthorizationService {
         return false;
     }
 
+    isUserAdmin()
+    {
+        if (this.globalService.loggedInUser.userType === 'ACC_TYPE_SUPER_ADMIN' ||this.globalService.loggedInUser.userType === 'ACC_TYPE_ADMIN') {
+                //console.log("Super admin found.. roles available by default");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+    }
+
+    isUserSuperAdmin()
+    {
+        if (this.globalService.loggedInUser.userType === 'ACC_TYPE_SUPER_ADMIN') {
+                //console.log("Super admin found.. roles available by default");
+                return true;
+            }
+        else
+        {
+            return false;
+        }    
+    }
+
 }
