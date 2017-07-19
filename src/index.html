@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Emailapp</title>
+  <title>Contact Swing- Email Campaigning</title>
   <base href="/">
 
   <link rel="stylesheet" type="text/css" href="app/resources/css/theme.css" />
@@ -11,6 +11,8 @@
   <link rel="stylesheet" type="text/css" href="app/resources/css/primeng.min.css" />
   <link rel="stylesheet" type="text/css" href="app/resources/css/bootstrap.min.css" />  
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -18,10 +20,88 @@
 
   <script src="app/resources/js/hammer.js"></script>
 
+  <style>
+    /* loding animation css */
+body {
+    background-color: #ffffff;
+}
+md-toolbar.md-primary{
+    background: #1b3049 !important;
+}
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.loading .bullet {
+    position: absolute;
+    padding: 5px;
+    border-radius: 50%;
+    background: #65a3ff;
+    -webkit-animation: animIn 1s ease-in-out 0s infinite;
+    animation: animIn 1s ease-in-out 0s infinite;
+}
+.loading .bullet:nth-child(1) {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+.loading .bullet:nth-child(2) {
+    -webkit-animation-delay: 0.15s;
+    animation-delay: 0.15s;
+}
+.loading .bullet:nth-child(3) {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+.loading .bullet:nth-child(4) {
+    -webkit-animation-delay: 0.45s;
+    animation-delay: 0.45s;
+}
+@-webkit-keyframes animIn {
+    0% {
+        -webkit-transform: translateX(-100px);
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateX(100px);
+        transform: translateX(100px);
+        opacity: 0;
+    }
+}
+@keyframes animIn {
+    0% {
+        -webkit-transform: translateX(-100px);
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateX(100px);
+        transform: translateX(100px);
+        opacity: 0;
+    }
+}
+</style>
+
 </head>
 
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <!-- loading animation -->
+    <div class='loading'>
+  <div class='bullet'></div>
+  <div class='bullet'></div>
+  <div class='bullet'></div>
+  <div class='bullet'></div>
+</div>
+<!-- loaing animation end -->
+  </app-root>
 </body>
 
 </html>

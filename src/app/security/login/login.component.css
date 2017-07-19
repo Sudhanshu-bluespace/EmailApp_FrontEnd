@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 .centered {
   position: fixed;
   top: 50%;
@@ -6,14 +8,137 @@
 }
 
 md-card {
-		-webkit-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+	/*	-webkit-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
 -moz-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
+box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);*/
 margin-top:2vh;
 background:white;
-border-radius: 12px 12px 12px 12px;
+/*border-radius: 12px 12px 12px 12px;
 -moz-border-radius: 12px 12px 12px 12px;
--webkit-border-radius: 12px 12px 12px 12px;
+-webkit-border-radius: 12px 12px 12px 12px;*/
 border: 0px solid #000000;
 min-height:25vh;
+width: 550px;
+left: -35px;
+}
+
+.login{
+      padding-left: 20%;
+    padding-right: 20%;
+    margin-bottom: 30px;
+}
+
+.login-logo{
+  padding-right: 20%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.login{
+  
+  height: 75px;
+}
+
+.button-class{
+  padding-left: 20%;
+  padding-right: 20%;
+  margin-top: 70px;
+  margin-bottom: 10px;
+
+}
+
+#submit{
+  width: 100%;
+}
+
+#submit:hover{
+  background: rgb(200, 200, 200);
+  color: #000000;
+}
+
+#back-button{
+  padding-left: 20px;
+  color: #dedede;
+}
+
+#back-button:hover{
+  color: #00aeee;
+}
+
+.submit-bt{
+  letter-spacing: 1px;
+  font-weight: bolder;
+}
+
+#login-area{
+  background: #fff;
+  min-height: 620px;
+}
+
+#login-left{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+#login-page{
+   padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 73px;
+}
+
+.login-content{
+  padding-top: 20px;
+}
+
+.login-content input{
+  height: 45px;
+  font-size: large;
+  font-family:'Montserrat', sans-serif;
+  width: 500px;
+}
+
+.head-label{
+  font-family:'Montserrat', sans-serif;
+  margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+.login-form{
+  padding-left: 20px;
+}
+
+#sub-button{
+      width: 500px;
+    height: 40px;
+    font-size: large;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #00aeee;
+}
+
+.form-hr{
+      margin-top: 30px;
+    margin-bottom: 30px;
+    border: 0;
+    border-top: 2px solid #eee;
+}
+
+.footer{
+  display: table;
+    background-color: #1b3049;
+    height: 75px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer p{
+      color: #fff;
+    padding-top: 25px;
+    float: right;
+    padding-right: 60px;
+}
+
+a:hover{
+  cursor: pointer;
 }

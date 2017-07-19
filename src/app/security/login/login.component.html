@@ -1,10 +1,47 @@
 <p-growl [value]="msgs"></p-growl>
+<div class="col-md-12" id="login-page">
+<div class="col-md-7" id="login-left">
+  <div class="bg-main">
+    <img src="../../app/resources/images/content/cover.jpg" />
+  </div>
+</div>
+
+<div class="col-md-5" id="login-area">
+  
+<div class="login-content">
+  <a class="btn-floating btn-large waves-effect waves-light red" id="back-button" (click)=home()><i class="material-icons"><i class="fa fa-arrow-left" aria-hidden="true"></i></i></a>
+<form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #loginForm="ngForm">
+  
+  <img class="login" src="../../app/resources/images/logo.png">
+  <h2 class="head-label">Log in</h2>
+  <div class="login-form">
+  <div class="form-group">
+    <input type="text" class="form-control" id="username" aria-describedby="username" name="username" placeholder="Username" required [(ngModel)]="username">
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required [(ngModel)]="password">
+  </div>
+  
+  <button type="submit" class="btn btn-primary" id="sub-button" (click)="showDialog()" [disabled]="!loginForm.form.valid">Sign In</button>
+  </div>
+</form>
+<hr class="form-hr">
+<p style="font-size:17px; padding-bottom:10px;">Forgot your<a> username</a> or <a>password?</a></p>
+<p>Don't have an account?<a (click)=appregister() > Sign up free.</a></p>
+
+</div>
+
+
+    
+    <!--
 <form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #loginForm="ngForm">
   <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
   <div class="col-xs-8 col-sm-6 col-md-4 col-lg-4 col-xl-4">
     <md-card class="app-input-section">
-      <md-card-title>Login</md-card-title>
-      <md-card-content>
+      <a class="btn-floating btn-large waves-effect waves-light red" id="back-button" (click)=home()><i class="material-icons"><i class="fa fa-arrow-left" aria-hidden="true"></i></i></a>
+     <!-- <button md-button md-raised-button color="primary" (click)=home()><i class="fa fa-arrow-left" aria-hidden="true"></i></button> -->
+    <!-- <md-card-title class="login-logo"><img class="login" src="../../app/resources/images/logo.png"></md-card-title>
+      <md-card-content class="login">
         <table style="width: 100%" cellspacing="0">
           <tr>
             <td>
@@ -26,13 +63,24 @@
           </tr>
         </table>
       </md-card-content>
-      <md-card-actions>
-        <button md-button type="submit" (click)="showDialog()" md-raised-button color="primary" [disabled]="!loginForm.form.valid">Submit</button>
-        <button md-button md-raised-button color="primary" (click)=home()>Cancel</button>
+      <md-card-actions class="button-class">
+        <button md-button type="submit" (click)="showDialog()" md-raised-button color="primary" id="submit" [disabled]="!loginForm.form.valid"><span class="submit-bt">SUBMIT</span></button>
+             
       </md-card-actions>
     </md-card>
   </div>
   <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
    <!--p-dialog header="Status..." [(visible)]="loggedin"  modal="modal" (onAfterShow)="login()" minWidth="200px">
     </p-dialog-->
-</form>
+ <!--</form> -->
+
+
+ 
+</div>
+</div>
+
+<div class="col-md-12">
+  <div class="footer">
+    <p>&copy; 2017 Contact Swing</p>
+  </div>
+</div>

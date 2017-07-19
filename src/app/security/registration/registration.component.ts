@@ -31,6 +31,10 @@ export class RegistrationComponent implements OnInit {
   _disabledV:string = '0';
   country_dropdown_disabled:boolean = false;
 
+
+  
+
+
   constructor( private router: Router,private registerService: RegistrationService) {
 
     console.log("in construct..");
@@ -55,6 +59,8 @@ export class RegistrationComponent implements OnInit {
       federalId:''
         }
   }
+
+ 
 
   clearForm()
   {
@@ -148,6 +154,13 @@ export class RegistrationComponent implements OnInit {
   home()
   {
 	  this.router.navigate(['/']);
+  }
+
+  applogin(){
+    this.router.navigate(['/appLogin']);
+  }
+  bluespace(){
+    window.location.href='http://www.bluespacetech.com' ;
   }
   
   showDialog() 

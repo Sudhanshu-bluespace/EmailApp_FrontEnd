@@ -3,8 +3,8 @@ md-sidenav-layout.m2app-dark {
 }
 
 .app-content {
-  padding: 20px;
-  min-height:95vh;
+  /*padding: 20px;
+  min-height:95vh;*/
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -109,4 +109,13 @@ color:white;
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+
+.md-toolbar.md-primary {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.login-bt{
+  left: -20px;
 }

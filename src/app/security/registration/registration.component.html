@@ -1,188 +1,176 @@
 <!--<small appCompare>hi</small>-->
+<!--<script>
+  $('.js-show-password-button').on('click', function () {
+    var $this = $(this);
+    var $input = $($this.data('target'));
+
+    var newType = $input.attr('type') === 'password' ? 'text' : 'password';
+
+    $input.attr('type', newType);
+    $this.text(newType === 'password' ? 'show' : 'hide');
+  });
+
+</script> -->
+
 <p-growl [value]="msgs"></p-growl>
-<form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #registerForm="ngForm">
-  <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
-  <div  class="col-xs-9 col-md-6 col-lg-4 col-xl-4">
-    <md-card class="app-input-section">
-      <md-card-title>Registration</md-card-title>      
-      <md-card-content>
-        <table style="width: 100%" cellspacing="0">
-          <tr>
-            <td>
-              <md-input placeholder="User name" minlength="5" required [(ngModel)]="user.username" name="username" style="width: 100%" #username="ngModel">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>
-              <!--<md-hint [hidden]="user.username.valid || (user.username.pristine && !registerForm.submitted)">
-                <pre *ngIf="user.username.errors">{{ user.username.errors | json }}</pre>
-              </md-hint>-->
-              <md-hint *ngIf="username.errors && (username.dirty || username.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!username.errors.required">username is required</div>
-                <div [hidden]="!username.errors.minlength">minimum 5 characters</div>
-              </md-hint>
-              </md-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <md-input placeholder="Password" compareControl="confirmPassword" sourceCompare="true" required type="password" [(ngModel)]="user.password" #password="ngModel" name="password" style="width: 100%">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">vpn_key</i>
-              </span>
-              <md-hint *ngIf="password.errors && (password.dirty || password.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!password.errors.required">password is required</div>
-              </md-hint>
-              </md-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <md-input placeholder="Confirm Password" required type="password" [(ngModel)]="user.confirmPassword"
-               #confirmPassword="ngModel" compareControl="password" name="confirmPassword" style="width: 100%">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">vpn_key</i>
-              </span>
-              <md-hint *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!confirmPassword.errors.required">confirm password is required</div>
-                <div [hidden]="confirmPassword.errors.required || !confirmPassword.errors">password not match</div>
-              </md-hint>
-              </md-input>
-            </td>
-          </tr>
-		  <tr>
-            <td>
-              <md-input placeholder="Email" emailPattern required [(ngModel)]="user.email" name="email" #email="ngModel" style="width: 100%"
-               required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>
-              <md-hint *ngIf="email.errors && (email.dirty || email.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!email.errors.required">email is required</div>
-                <div [hidden]="!email.errors.pattern">Email does not look to be valid</div>
-              </md-hint>
-              </md-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <md-input placeholder="Company Name" minlength="3" required [(ngModel)]="user.companyName" name="companyname" style="width: 100%" #companyname="ngModel">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>
-              <md-hint *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!companyname.errors.required">Company Name is required</div>
-              </md-hint>
-              </md-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <md-input placeholder="Phone Number" maxlength="10" required [(ngModel)]="user.phone" name="phone" style="width: 100%" #phone="ngModel">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>
-              <md-hint *ngIf="phone.errors && (phone.dirty || phone.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!phone.errors.required">Phone Number is required</div>
-              </md-hint>
-              </md-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <md-input placeholder="Federal ID" maxlength="18" required [(ngModel)]="user.federalId" name="federalId" style="width: 100%" #federalId="ngModel">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>
-              <md-hint *ngIf="federalId.errors && (federalId.dirty || federalId.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!federalId.errors.required">Federal ID is required</div>
-              </md-hint>
-              </md-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <md-input placeholder="Address" maxlength="30" required [(ngModel)]="user.address" name="address" style="width: 100%" #adddress="ngModel">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>
-              <!--md-hint *ngIf="address.errors && (address.dirty || address.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!address.errors.required">Address is required</div>
-              </md-hint-->
-              </md-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <md-input placeholder="Street" maxlength="10" required [(ngModel)]="user.street" name="street" style="width: 100%" #street="ngModel">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>
-                   <!--md-hint *ngIf="street.errors && (street.dirty || street.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!street.errors.required">Street is required</div>
-              </md-hint-->
-              </md-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <md-input placeholder="Zip Code" maxlength="10" required [(ngModel)]="user.zipcode" name="zipcode" style="width: 100%" #zipcode="ngModel">
-                <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>
-                   <md-hint *ngIf="zipcode.errors && (zipcode.dirty || zipcode.touched)" [ngStyle]="{'color': 'red'}" align="end">
-                <div [hidden]="!zipcode.errors.required">ZipCode is required</div>
-              </md-hint>
-              </md-input>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>
-                <select required style="width: 300px;height:35px;margin-left:30px;margin-top:15px;" [(ngModel)]="user.country" name="country" (ngModelChange)="getStates($event)">
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1" id="registration-area">
+      <form class="form-horizontal" role="form" (ngSubmit)="onSubmit()" autocomplete="off" novalidate #registerForm="ngForm">
+        <fieldset>
+          <legend>
+            <h2>Sign Up Today for FREE</h2>
+            <p style="font-size:14px">Create an account for free and start campaigning to your customers, for a better business. <br/> Already have
+              an account? <a (click)=applogin() class="link">Log in here</a></p>
+            <small id="small">Please register using valid details to use Contact Swing</small>
+          </legend>
+
+          <!-- Name Group-->
+          <div class="form-group">
+            <div class="col-sm-4">
+              <input type="text" name="fistName" placeholder="First Name" class="form-control" minlength="5" maxlength="50" required [(ngModel)]="first.name">
+              <div *ngIf="firstNameRead.errors && (firstNameRead.dirty || firstNameRead.touched)" class="alert alert-danger">
+                <div [hidden]="!firstNameRead.errors.required">
+                  First name is required
+                </div>
+                <div [hidden]="!firstNameRead.errors.maxlength">
+                  Max Character Lenght is 50
+                </div>
+                <div [hidden]="!firstNameRead.dirty || firstNameRead.errors.required">
+                  Invalid first name
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <input type="text" name="middleName" placeholder="Middle Name" class="form-control" [(ngModel)]="middle.name">
+            </div>
+            <div class="col-sm-4">
+              <input type="text" name="lastName" placeholder="Last Name" class="form-control" minlength="5" required [(ngModel)]="last.name">
+            </div>
+          </div>
+
+          <!-- Email ID-->
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="email" placeholder="Email Address" class="form-control" emailPattern required [(ngModel)]="user.email" name="email"
+                #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            </div>
+          </div>
+
+          <!-- Username-->
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" placeholder="Username" class="form-control" name="username" minlength="5" required [(ngModel)]="user.username"
+                #username="ngModel">
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="password" placeholder="Password" class="form-control" compareControl="confirmPassword" sourceCompare="true"
+                required [(ngModel)]="user.password" #password="ngModel" name="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="password" placeholder="Retype-Password" class="form-control" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel"
+                compareControl="password" name="confirmPassword">
+            </div>
+          </div>
+
+          <!-- Address Section -->
+          <!-- Form Name -->
+          <legend style="padding-top:30px;">Organization Details</legend>
+          <!-- Text input-->
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" name="companyName" placeholder="Organization Name" class="form-control" required [(ngModel)]="user.companyName"
+                name="companyname" #companyname="ngModel">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" name="phonenumber" placeholder="Phone Number " class="form-control" maxlength="10" required [(ngModel)]="user.phone"
+                name="phone" #phone="ngModel">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" name="addressLine1" placeholder="Address Line " class="form-control" maxlength="30" required [(ngModel)]="user.address"
+                name="address" #adddress="ngModel">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" name="addressLine2" placeholder="Suite/ Apt " class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <div class="col-sm-4">
+              <select class="form-control" required style="height:40px;color: #8f8f8f;" [(ngModel)]="user.country" name="country" (ngModelChange)="getStates($event)">
                   <option value="" disabled selected>Select Country</option>
                   <option *ngFor="let country of countries"  value="{{country.fullName}}">
                     {{country.fullName}}
                   </option>
                 </select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-                <span md-prefix>
-                  <i class="material-icons app-input-icon">person</i>
-                </span>
-                  <select required style="width: 300px;height:35px;margin-left:30px;margin-top:15px;" [(ngModel)]="user.state" name="state" (ngModelChange)="getCities($event)">
+
+            </div>
+            <div class="col-sm-2">
+              <select class="form-control" required style="height:40px; color:#8f8f8f;" [(ngModel)]="user.state" name="state" (ngModelChange)="getCities($event)">
                     <option value="" disabled selected>Select State</option>
                     <option *ngFor="let state of states"  value="{{state.name}}">
                       {{state.name}}
                     </option>
                   </select>
-            </td>
-          </tr>
-           <tr>
-            <td>
-              <span md-prefix>
-                <i class="material-icons app-input-icon">person</i>
-              </span>            
-                <select required style="width: 300px;height:35px;margin-left:30px;margin-top:15px;" [(ngModel)]="user.city" name="city">
+            </div>
+            <div class="col-sm-4">
+              <select class="form-control" required style="height:40px; color:#8f8f8f" [(ngModel)]="user.city" name="city">
                    <option value="" disabled selected>Select City</option>
                   <option *ngFor="let city of cities"  value="{{city.name}}">
                     {{city.name}}
                   </option>
                 </select>
-            </td>
-          </tr>
-        </table>
-      </md-card-content>
-      <md-card-actions>
-        <button md-button type="submit" md-raised-button color="primary" [disabled]="!registerForm.form.valid || disabled">Register</button>   
-        <button md-button md-raised-button (click)="home()" color="primary">Cancel</button>		
-      </md-card-actions>
-    </md-card>
+
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4">
+              <input type="text" name="postalCode" placeholder="Post Code" class="form-control" maxlength="10" required [(ngModel)]="user.zipcode"
+                name="zipcode" #zipcode="ngModel">
+            </div>
+          </div>
+
+          <div class="form-check" style="padding-top:20px;">
+            <p>By clicking Sign Up button, you agree to Contact Swing's <a>Anti-spam Policy & Terms of Use.</a></p>
+
+          </div>
+          <div class="signUp-bt">
+            <div class="form-group">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary" id="sign-up" [disabled]="!registerForm.form.valid || disabled">Sign Up</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-check" style="padding-bottom:30px; color:#8f8f8f">
+            <p>©2017 All Rights Reserved. Contact Swing® is a registered trademark of <br/><a (click)="bluespace()">Blue Space Technologies, INC.</a>              -- <a>Privacy</a> and <a>Terms</a></p>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <!-- /.col-lg-12 -->
   </div>
-  <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
-     <!--p-dialog header="Registration Status..." [(visible)]="registered"  modal="modal" (onAfterShow)="register()" minWidth="200px">
-    </p-dialog-->
-</form>
+  <!-- /.row -->
+
+</div>
+
+
+
+
