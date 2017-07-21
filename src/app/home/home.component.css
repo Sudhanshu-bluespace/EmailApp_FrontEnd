@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 md-sidenav-layout.m2app-dark {
   /*background-color: black;*/
 }
@@ -113,9 +115,11 @@ color:white;
 
 .md-toolbar.md-primary {
   padding-left: 60px;
-  padding-right: 60px;
+  padding-right: 90px;
 }
 
-.login-bt{
-  left: -20px;
+#tool-bt{
+  width: 110px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #2382f6;
 }

@@ -1,96 +1,126 @@
 <section>
-  <div class="col-md-4">
-    <h1>Bring your Business</h1>
-    <br>
-    <h1>Help Grow it</h1>
-  </div>
-  <div class="col-md-8">
-    <span>CS</span>
+  <div class="col-md-12" id="section1">
+    <h1>Grow Your Business</h1>
+    <p class="main-p">Streamline your business, help grow it. We offer you with the power of advertising to build your dreams. </p>
+    <a class="btn btn-primary" id="main-bt" href="#" role="button">Get Started</a>
   </div>
 </section>
-<section>
-  <h1>Section 2</h1>
+
+
+<section id="services" class="services-section" style="height:auto;">
+  <div class="container pt-50 pb-50" style="padding-top:30px;">
+    <div class="row" style="margin-top:30px;">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title">
+    <h1 style="font-size:40px; color:#000; margin-bottom:60px;">We get things done faster</h1>
+        <div class="horizontal-gold"></div>
+      </div>
+      </div>
+        <div class="row" style="margin-top:60px; margin-bottom:60px;">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 service-holder text-center col-centered">
+        <div><i class="fa fa-mobile" aria-hidden="true" style='line-height: 130px;'></i></div>
+        <h4>Mobile Friendly</h4>
+        <p>Work with campaign even on the go with responsive interfaces, and mobile responsive templates look professional</p>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 service-holder text-center col-centered">
+        <div><i class="fa fa-bar-chart" aria-hidden="true"></i></div>
+        <h4>Easy Reporting</h4>
+        <p>Better reporting with real time data, get reporting for the campaign and imporve your business</p>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 service-holder text-center col-centered">
+        <div><i class="fa fa-envelope" aria-hidden="true"></i></div>
+        <h4>Emails Reach</h4>
+        <p>Maximum success rate of email reach, never miss a customer and build your reputation develop your business.</p>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 service-holder text-center col-centered">
+        <div><i class="fa fa-database" aria-hidden="true"></i></div>
+        <h4>Data</h4>
+        <p>Imporve the way you run the business with the data provided, help shaping your business better.</p>
+      </div>
+    </div>
+  </div>
 </section>
-<section>
-  <h1>Section 3</h1>
-</section>
 
 
-
-
+<div class="col-md-12">
+  <div class="footer">
+    <p>&copy; 2017 Contact Swing</p>
+  </div>
+</div>
 
 
 <script type="text/javascript">
+  (function () {
 
-(function(){
-  
-  //t = current time
-  //b = start value
-  //c = change in value
-  //d = duration
-  Math.easeInOutQuad = function (t, b, c, d) {
-    t /= d/2;
-    if (t < 1) return c/2*t*t + b;
-    t--;
-    return -c/2 * (t*(t-2) - 1) + b;
-  };
-  
-  var app = {
-    cache: function() {      
-      this.$body = document.documentEelement || document.body;
-    },
-    events: function() {
-      // If you comment the line below, the automatic scroll to next page will be deactivated;
-      window.onscroll = this.scrolling.bind(this);
-    },
-    init: function() {
-      this.scrollTop   = 0;
-      this.isScrolling = false;
-      this.duration    = 500;
-      this.vHeight     = window.innerHeight;
-      
-      this.cache();
-      this.events();
-    },
-    scrolling: function(e) {
-      var scrollTop;
-      
-      if(this.isScrolling) return;
-      
-      this.vHeight = window.innerHeight;
-      scrollTop    = this.$body.scrollTop;
-      
-      if( scrollTop > this.scrollTop )
-        this.scrollTo(this.$body, (this.scrollTop + this.vHeight), this.duration);
-      else
-        this.scrollTo(this.$body, (this.scrollTop - this.vHeight), this.duration);
-    },
-    scrollTo: function(element, to, duration) {
-      var start = element.scrollTop,
+    //t = current time
+    //b = start value
+    //c = change in value
+    //d = duration
+    Math.easeInOutQuad = function (t, b, c, d) {
+      t /= d / 2;
+      if (t < 1) return c / 2 * t * t + b;
+      t--;
+      return -c / 2 * (t * (t - 2) - 1) + b;
+    };
+
+    var app = {
+      cache: function () {
+        this.$body = document.documentEelement || document.body;
+      },
+      events: function () {
+        // If you comment the line below, the automatic scroll to next page will be deactivated;
+        window.onscroll = this.scrolling.bind(this);
+      },
+      init: function () {
+        this.scrollTop = 0;
+        this.isScrolling = false;
+        this.duration = 500;
+        this.vHeight = window.innerHeight;
+
+        this.cache();
+        this.events();
+      },
+      scrolling: function (e) {
+        var scrollTop;
+
+        if (this.isScrolling) return;
+
+        this.vHeight = window.innerHeight;
+        scrollTop = this.$body.scrollTop;
+
+        if (scrollTop > this.scrollTop)
+          this.scrollTo(this.$body, (this.scrollTop + this.vHeight), this.duration);
+        else
+          this.scrollTo(this.$body, (this.scrollTop - this.vHeight), this.duration);
+      },
+      scrollTo: function (element, to, duration) {
+        var start = element.scrollTop,
           change = to - start,
           currentTime = 0,
           increment = 20,
           self = this;
-        
-      var animateScroll = function(){        
+
+        var animateScroll = function () {
           currentTime += increment;
           var val = Math.easeInOutQuad(currentTime, start, change, duration);
           element.scrollTop = val;
-          if(currentTime <= duration) {
-              setTimeout(animateScroll, increment);
+          if (currentTime <= duration) {
+            setTimeout(animateScroll, increment);
           } else {
             self.scrollTop = element.scrollTop;
-            setTimeout(function(){ self.isScrolling = false },increment);
+            setTimeout(function () { self.isScrolling = false }, increment);
           }
-      };
-      
-      this.isScrolling = true;
-      animateScroll();
-    }
-  };
- 
-  app.init();
-  
-})();
+        };
+
+        this.isScrolling = true;
+        animateScroll();
+      }
+    };
+
+    app.init();
+
+  })();
 
 </script>
