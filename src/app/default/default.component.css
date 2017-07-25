@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 section {
   height: 100vh;
   position: relative;
@@ -7,15 +9,211 @@ section:nth-child(1) {
   background-color: #FFF;
 }
 section:nth-child(2) {
-  background-color: #FF9200;
+  background-color: #FFF;
 }
 section:nth-child(3) {
-  background-color: #FF4900;
+  background-color: #fff;
 }
 section h1 {
   color: #000;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  font-size: 60px;  
   transform: translate(-50%, -50%);
+  top: 10%;
+  left: 50%;
+position: absolute;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.main-p{
+      top: 18%;
+    left: 30%;
+    position: absolute;
+}
+
+#section1{
+  background: url(/../../app/resources/images/content/cover_main.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+
+}
+
+#main-bt{
+    top: 25%;
+    left: 46%;
+    position: absolute;
+    width: 130px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 10px 10px 10px;
+    font-size: 15px;
+    background: #686868;
+}
+
+@media screen and (min-width: 480px) {
+    section h1 {
+        font-size: 21px;
+    }
+      .main-p{
+        left: 14%;
+        padding-right: 20px;
+      }
+}
+
+@media screen and (min-width: 760px) {
+    section h1 {
+        font-size: 39px;
+    }
+      .main-p{
+        left: 12%;
+      }
+
+      #main-bt{
+        left: 39%;
+      }
+}
+
+@media screen and (min-width: 970px) {
+    section h1 {
+        font-size: 50px;
+    }
+      .main-p{
+        left: 17%;
+      }
+
+}
+
+@media screen and (min-width: 1170px) {
+    section h1 {
+        font-size: 60px;
+    }
+      .main-p{
+        left: 29%;
+      }
+
+      #main-bt{
+        left: 45%;
+      }
+
+}
+
+@media screen and (min-width: 1920px) {
+    section h1 {
+        font-size: 60px;
+    }
+      .main-p{
+        left: 33%;
+      }
+
+      #main-bt{
+        left: 45%;
+      }
+
+}
+
+
+
+.services-section {
+  text-align: center;
+  background: #101010;
+}
+
+.service-holder {
+  border: 1px solid transparent;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.service-holder > div {
+  height: 140px;
+  width: 140px;
+  background-color: transparent;
+  border-bottom-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-top-right-radius: 50%;
+  color: #4c505e;
+  font-size: 30px;
+  line-height: 140px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+.service-holder > div > i {
+  font-size: 70px;
+  line-height: 140px;
+
+  -webkit-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);  
+  -moz-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+  -o-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);
+  -ms-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+  transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);
+}
+
+.service-holder > div > i:hover {
+  color: #898989;
+  font-size: 70px;
+  line-height: 140px;
+}
+
+.service-holder h4 {
+  color: #898989;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.service-holder p {
+  font-family: 'Montserrat', sans-serif;
+  color: #000;
+  letter-spacing: 1px;
+}
+
+.service-holder a {
+  color: #898989;
+
+  -webkit-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);  
+  -moz-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+  -o-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);
+  -ms-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+  transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);
+}
+
+.service-holder a:hover {
+  color: #898989;
+  text-decoration: none;
+}
+
+.col-centered {
+  display: inline-block;
+  float: none;
+  margin-left: -4px;
+  vertical-align: bottom;
+}
+
+.footer{
+  display: table;
+    background-color: #1b3049;
+    height: 75px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer p{
+      color: #fff;
+    padding-top: 25px;
+    float: right;
+    padding-right: 60px;
 }
