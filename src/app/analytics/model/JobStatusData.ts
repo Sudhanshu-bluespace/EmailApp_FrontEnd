@@ -7,4 +7,5 @@ export class JobStatusData
     public emailCount:number;
     public sender:string;
     public status:string;
+    public comments:string;
 }

@@ -146,12 +146,22 @@ export class DashboardComponent implements OnInit {
 	@ViewChild('emailSubject') emailSubject: ElementRef;
 	@ViewChild('clickPercentage') clickPercentage: ElementRef;
 	@ViewChild('unsubscribePercentage') unsubscribePercentage: ElementRef;
+	@ViewChild('reachPercentage') reachPercentage: ElementRef;
 
     loadData(sentOn,subject,clickPercentage,unsubscribePercentage) {
         this.sentOnDate.nativeElement.innerHTML = sentOn;
 		this.emailSubject.nativeElement.innerHTML = subject;
 		this.clickPercentage.nativeElement.innerHTML = clickPercentage+'%';
-		this.unsubscribePercentage.nativeElement.innerHTML = unsubscribePercentage+'%';		
+		this.unsubscribePercentage.nativeElement.innerHTML = unsubscribePercentage+'%';
+		if(this.summary.reach === 0)
+		{
+			this.reachPercentage.nativeElement.innerHTML = '0%';	
+		}		
+		else
+		{
+			this.reachPercentage.nativeElement.innerHTML = '100%';
+		}
+			
     }
   
   recentChartSummary(username: string){
@@ -161,6 +171,24 @@ export class DashboardComponent implements OnInit {
                  this.summary = data;
 			console.log("data: ",data);	 
 			console.log("response : "+this.summary.unsubscribes+" | "+this.summary.reach+" | "+this.summary.clicks);
+			if(this.summary.unsubscribes === 0)
+			{
+				this.summary.unsubscribePercentage = 0;
+			}
+			else
+			{
+				this.summary.unsubscribePercentage = (this.summary.unsubscribes/this.summary.reach)*100;
+			}
+
+			if(this.summary.clicks === 0)
+			{
+				this.summary.clickPercentage = 0;
+			}
+			else
+			{
+				this.summary.clickPercentage = (this.summary.clicks/this.summary.reach)*100;
+			}		
+			
 			this.myClick();
 			this.loadData("Sent on "+this.summary.sentOn,this.summary.subject,this.summary.clickPercentage,this.summary.unsubscribePercentage);
             },

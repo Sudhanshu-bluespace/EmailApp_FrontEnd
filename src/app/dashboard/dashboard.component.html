@@ -66,7 +66,8 @@
         <p-column field="campaignName" header="Campaign Name" [sortable]="true" [filter]="true"></p-column>
 				<p-column field="emailCount" header="Total Contacts" [sortable]="true" [filter]="true"></p-column>
 				<p-column field="sender" header="Sender" [sortable]="true" [filter]="true"></p-column>
-				<p-column field="status" header="Status" [sortable]="true" [filter]="false"></p-column>
+				<!--p-column field="status" header="Status" [sortable]="true" [filter]="false"></p-column-->
+				<p-column field="comments" header="Failure Reason" [sortable]="true" [filter]="false"></p-column>
         <footer>
         </footer>
       </p-dataTable>
@@ -104,7 +105,8 @@
 				  <div id="summary-right">
 					<h4> Statistical Summary </h4>
 					<p #description>
-						This is a section that gives a summarized text for visitor campaign held on May 01, 2017. The campaign was targeted to visitors, default and prime contact groups. The campaign was completed successfully with a bounce percentage of 3%
+						This is a section that gives a summarized text for the most recent campaign held from your account. It provides insight on whom the campaign was targeted to and to which groups. 
+						It also provides insights on the statistical insights for the campaign.
 					</p>
 				  </div>
 			  </div>
@@ -122,7 +124,7 @@
 							</thead>
 							<tr class="totalreach">
 								<td>Total Reach</td>
-								<td>100%</td>
+								<td #reachPercentage></td>
 							</tr>
 							<tr class="clicks">
 								<td>Total clicks</td>
