@@ -6,7 +6,7 @@ export class PendingAccountApprovals{
     public email:string;
 	public companyName:string;
     public registrationRequestDate:string;
-    public street:string;
+    public address:string;
     public city:string;
     public state:string;
     public country:string;

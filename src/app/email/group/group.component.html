@@ -1,5 +1,6 @@
 <p-growl [value]="msgs"></p-growl>
 
+<div class="main-panel" style="min-height:110vh;">
 <form *ngIf="active" #groupForm="ngForm">
 
     <div class="panel panel-default" *ngIf="!displayViewDialog && !displayCreateDialog">
@@ -129,3 +130,4 @@
     <!--  </p-dialog> -->
 
 </form>
+</div>

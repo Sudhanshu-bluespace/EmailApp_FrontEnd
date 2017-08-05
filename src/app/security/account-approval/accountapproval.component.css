@@ -1,16 +1,16 @@
 #mainContainer
 {
-    width:94%;
+    width:95%;
 }
 
 #pendingapprovaltable
 {
-    padding:15px;
+    padding:10px;
+     width:95%;
 }
 
 #pendingapprovaltable table {
-	width:100%;
-    /*border:2px solid #BDBDBE;*/
+    min-width: 92%;
     -webkit-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);
     box-shadow: -4px 10px 25px -6px rgba(0,0,0,0.75);

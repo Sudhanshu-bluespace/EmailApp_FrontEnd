@@ -1,3 +1,7 @@
 .myTable td:nth-child(1) {
     width: 20px;
 }
+
+.email-compose{
+    min-height: 110vh;
+}

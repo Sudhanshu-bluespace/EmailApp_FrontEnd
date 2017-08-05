@@ -44,17 +44,20 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     console.log("in init");
     this.user = {
+      firstName: '',
+      middleName: '',
+      lastName: '',
             username: '',
             password: '',
             confirmPassword: '',
 			email: '',
       companyName: '',
       phone: '',
-      address:'',
+      addressLine1:'',
+      addressLine2: '',
       country:'',
       state:'',
       city:'',
-      street:'',
       zipcode:'',
       federalId:''
         }
@@ -64,19 +67,22 @@ export class RegistrationComponent implements OnInit {
 
   clearForm()
   {
-    console.log("in clear form");
+    //console.log("in clear form");
     this.user = {
+      firstName: '',
+      middleName: '',
+      lastName: '',
             username: '',
             password: '',
             confirmPassword: '',
 			email: '',
       companyName: '',
       phone: '',
-      address:'',
+      addressLine1:'',
+      addressLine2: '',
       country:'',
       state:'',
       city:'',
-      street:'',
       zipcode:'',
       federalId:''
         }

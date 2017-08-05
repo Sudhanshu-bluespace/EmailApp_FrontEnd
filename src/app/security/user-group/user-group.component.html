@@ -1,4 +1,5 @@
 <p-growl [value]="msgs"></p-growl>
+<div class="main-panel" style="min-height:110vh;">
 <div *ngIf="!displayUserGroupDetails">
   <md-card>
     <md-card-title color="primary">Search User Groups</md-card-title>
@@ -56,4 +57,5 @@
       <button md-raised-button color="primary" (click)="backToUserGroups()">Back</button>
     </md-card-actions>
   </md-card>
+</div>
 </div>

@@ -1,6 +1,7 @@
 <p-growl [value]="msgs" sticky="true"></p-growl>
 
-<form #emailForm="ngForm" *ngIf="active">
+<div class="main-panel" style="min-height:110vh;">
+<form #emailForm="ngForm" *ngIf="active" >
 
     <div class="panel panel-default">
         <div class="col-md-5"></div>
@@ -33,15 +34,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12" style="overflow:hidden;height:400px;">
+                <div class="col-md-12" style="min-height:400px;">
                     <label for="message">Message*</label>
                     <!--textarea class="form-control" placeholder="Required" rows="10" id="message" required name="message" [(ngModel)]="emailVO.message"
                         #message="ngModel"></textarea-->
-                    <p-editor [(ngModel)]="emailVO.message" [style]="{'height':'320px'}" placeholder="Required" #message="ngModel" name="message" required #message="ngModel">
-                    </p-editor>    
-                    <div [hidden]="message.valid || message.pristine" class="alert alert-danger">
+                    <!--p-editor [(ngModel)]="emailVO.message" [style]="{'height':'320px'}" placeholder="Required" #message="ngModel" name="message" required #message="ngModel">
+                    </p-editor-->
+                    <textarea style="min-height:50vh;" [froalaEditor]="options" [(froalaModel)]="emailVO.message" name="message"></textarea>   
+                    <!--div [hidden]="message.valid || message.pristine" class="alert alert-danger">
                         Message is required
-                    </div>
+                    </div-->
                 </div>
             </div>
             <br/>
@@ -57,3 +59,5 @@
     </p-dialog>
 
 </form>
+
+</div>

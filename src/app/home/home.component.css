@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+md-sidenav-layout {
+  overflow:visible;
+}
 md-sidenav-layout.m2app-dark {
-  /*background-color: black;*/
+  background-color: black;
 }
 
 .app-content {

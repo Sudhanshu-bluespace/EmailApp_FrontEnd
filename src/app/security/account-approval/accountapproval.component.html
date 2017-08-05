@@ -1,13 +1,12 @@
 <p-growl [value]="msgs"></p-growl>
-<form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #approvalForm="ngForm">
+<form (ngSubmit)="onSubmit()" autocomplete="off" novalidate #approvalForm="ngForm">  
 <div id="mainContainer">
-    <md-card class="app-input-section">
+    <md-card class="app-input-section" style="width:94%;">
         <md-card-title>
             <span><img src="../../app/resources/images/approval.png" style="width:60px;height:60px;margin-right:15px;opacity:100;"/></span><span>Account approval requests</span>
         </md-card-title>
         <md-card-content>
              <p> Following account creation requests are waiting for your approval </p>
-        </md-card-content>
 
         <div id="pendingapprovaltable">
             <table>
@@ -15,11 +14,11 @@
                     <tr>
                         <td>Serial No</td>
                         <td>user ID</td>
-                        <td>user name</td>
+                        <td>Name</td>
                         <td>Email</td>
 						<td>Company Name</td>
                         <td>Requested On</td>
-                        <td>Street</td>
+                        <td>Address</td>
                         <td>City</td>
                         <td>State</td>
                         <td>Country</td>
@@ -39,7 +38,7 @@
                             <td>{{data.email}}</td>
 							<td>{{data.companyName}}</td>
                             <td>{{data.registrationRequestDate}}</td>
-                            <td>{{data.street}}</td>
+                            <td>{{data.address}}</td>
                             <td>{{data.city}}</td>
                             <td>{{data.state}}</td>
                             <td>{{data.country}}</td>
@@ -67,6 +66,7 @@
 
             </table>
         </div>
+        </md-card-content>
     </md-card>
 </div>
   <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>

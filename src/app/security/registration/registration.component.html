@@ -28,24 +28,24 @@
           <!-- Name Group-->
           <div class="form-group">
             <div class="col-sm-4">
-              <input type="text" name="fistName" placeholder="First Name" class="form-control" minlength="5" maxlength="50" required [(ngModel)]="first.name">
-              <div *ngIf="firstNameRead.errors && (firstNameRead.dirty || firstNameRead.touched)" class="alert alert-danger">
-                <div [hidden]="!firstNameRead.errors.required">
+              <input type="text" name="firstName" placeholder="First Name" class="form-control" minlength="5" maxlength="50" required [(ngModel)]="user.firstName" #firstName="ngModel">
+              <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                <div [hidden]="!firstName.errors.required">
                   First name is required
                 </div>
-                <div [hidden]="!firstNameRead.errors.maxlength">
+                <div [hidden]="!firstName.errors.maxlength">
                   Max Character Lenght is 50
                 </div>
-                <div [hidden]="!firstNameRead.dirty || firstNameRead.errors.required">
+                <div [hidden]="!firstName.dirty || firstName.errors.required">
                   Invalid first name
                 </div>
               </div>
             </div>
             <div class="col-sm-2">
-              <input type="text" name="middleName" placeholder="Middle Name" class="form-control" [(ngModel)]="middle.name">
+              <input type="text" name="middleName" placeholder="Middle Name" class="form-control" [(ngModel)]="user.middleName">
             </div>
             <div class="col-sm-4">
-              <input type="text" name="lastName" placeholder="Last Name" class="form-control" minlength="5" required [(ngModel)]="last.name">
+              <input type="text" name="lastName" placeholder="Last Name" class="form-control" minlength="5" required [(ngModel)]="user.lastName" #lastName="ngModel">
             </div>
           </div>
 
@@ -99,7 +99,7 @@
           <!-- Text input-->
           <div class="form-group">
             <div class="col-sm-10">
-              <input type="text" name="addressLine1" placeholder="Address Line " class="form-control" maxlength="30" required [(ngModel)]="user.address"
+              <input type="text" name="addressLine1" placeholder="Address Line " class="form-control" maxlength="200" required [(ngModel)]="user.addressLine1"
                 name="address" #adddress="ngModel">
             </div>
           </div>
@@ -107,7 +107,7 @@
           <!-- Text input-->
           <div class="form-group">
             <div class="col-sm-10">
-              <input type="text" name="addressLine2" placeholder="Suite/ Apt " class="form-control">
+              <input type="text" name="addressLine2" placeholder="Suite/ Apt " class="form-control" [(ngModel)]="user.addressLine2" maxlength="30">
             </div>
           </div>
 

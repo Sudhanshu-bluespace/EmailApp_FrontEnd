@@ -1,5 +1,6 @@
 <p-growl [value]="msgs" sticky="sticky"></p-growl>
 
+<div class="email-compose">
 <form #contactForm="ngForm" *ngIf="active">
 
     <div class="panel panel-default" *ngIf="!displayViewDialog && !displayCreateDialog">
@@ -244,3 +245,5 @@
     </div>
 
 </form>
+
+</div>

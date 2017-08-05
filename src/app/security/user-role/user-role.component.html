@@ -1,4 +1,5 @@
 <p-growl [value]="msgs"></p-growl>
+<div class="main-panel" style="min-height:110vh;">
 <div *ngIf="!displayUserRoleDetails">
   <md-card>
     <md-card-title color="primary">Search User Roles</md-card-title>
@@ -83,4 +84,6 @@
       <button md-raised-button color="primary" (click)="backToUserRoles()">Back</button>
     </md-card-actions>
   </md-card>
+</div>
+
 </div>

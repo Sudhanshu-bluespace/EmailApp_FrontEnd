@@ -16,6 +16,8 @@ import { EmailServerService } from "./server/emailserver.service";
 import { EmailService } from "./email/email.service";
 import { EmailServerPropertiesService } from "./server/emailserverproperties.service";
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+// Import Angular2 plugin.
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { DataTableModule,EditorModule, SharedModule, GrowlModule, Message, 
          ButtonModule, Header, Footer, DialogModule, SelectItem,
@@ -23,7 +25,7 @@ import { DataTableModule,EditorModule, SharedModule, GrowlModule, Message,
 
 @NgModule({
     imports: [CommonModule, FormsModule, EditorModule,HttpModule, JsonpModule, MaterialModule.forRoot(), DataTableModule, ButtonModule, 
-    DialogModule, PanelModule, SharedModule, GrowlModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule],
+    DialogModule, PanelModule, SharedModule, GrowlModule, MultiSelectModule, ListboxModule, TabViewModule, DropdownModule,FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()],
     declarations: [GroupComponent, ContactComponent, EmailServerComponent, EmailComponent, FileUploadComponent,	FileSelectDirective, FileDropDirective],
     providers: [ContactService, GroupService, CommonService, ContactGroupService, EmailServerService, EmailService,EmailServerPropertiesService]
 })
