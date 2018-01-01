@@ -20,6 +20,18 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="subject">Reply To</label>
+                        <input type="text" placeholder="Reply To" class="form-control" id="replyTo" required [(ngModel)]="emailVO.replyTo" name="replyTo"
+                            #replyTo="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                        <!--div [hidden]="subject.valid || subject.pristine" class="alert alert-danger">
+                            Subject is required
+                        </div-->
+                    </div>
+                </div>
             </div>            
             <div class="row">
                 <div class="col-md-12">
